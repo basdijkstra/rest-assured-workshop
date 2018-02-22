@@ -1,0 +1,11 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/api/f1/2016/drivers.json"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": {"MRData":{"series":"f1","limit":"30","offset":"0","total":"9","DriverTable":{"season":"2016","Drivers":[{"driverId":"alonso","permanentNumber":"14","code":"ALO","givenName":"Fernando","familyName":"Alonso","dateOfBirth":"1981-07-29","nationality":"Spanish"},{"driverId":"bottas","permanentNumber":"77","code":"BOT","givenName":"Valtteri","familyName":"Bottas","dateOfBirth":"1989-08-29","nationality":"Finnish"},{"driverId":"button","permanentNumber":"22","code":"BUT","givenName":"Jenson","familyName":"Button","dateOfBirth":"1980-01-19","nationality":"British"},{"driverId":"hamilton","permanentNumber":"44","code":"HAM","givenName":"Lewis","familyName":"Hamilton","dateOfBirth":"1985-01-07","nationality":"British"},{"driverId":"raikkonen","permanentNumber":"7","code":"RAI","givenName":"Kimi","familyName":"Räikkönen","dateOfBirth":"1979-10-17","nationality":"Finnish"},{"driverId":"ricciardo","permanentNumber":"3","code":"RIC","givenName":"Daniel","familyName":"Ricciardo","dateOfBirth":"1989-07-01","nationality":"Australian"},{"driverId":"rosberg","permanentNumber":"6","code":"ROS","givenName":"Nico","familyName":"Rosberg","dateOfBirth":"1985-06-27","nationality":"German"},{"driverId":"max_verstappen","permanentNumber":"33","code":"VES","givenName":"Max","familyName":"Verstappen","dateOfBirth":"1997-09-30","nationality":"Dutch"},{"driverId":"vettel","permanentNumber":"5","code":"VET","givenName":"Sebastian","familyName":"Vettel","dateOfBirth":"1987-07-03","nationality":"German"}]}}}
+    }
+}

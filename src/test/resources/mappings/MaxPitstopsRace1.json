@@ -1,0 +1,11 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/api/f1/2015/1/drivers/max_verstappen/pitstops.json"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": {"MRData":{"series":"f1","limit":"30","offset":"0","total":"1","RaceTable":{"season":"2015","round":"1","driverId":"max_verstappen","Races":[{"season":"2015","round":"1","raceName":"Australian Grand Prix","Circuit":{"circuitId":"albert_park","circuitName":"Albert Park Grand Prix Circuit","Location":{"lat":"-37.8497","long":"144.968","locality":"Melbourne","country":"Australia"}},"date":"2015-03-15","time":"05:00:00Z","PitStops":[{"driverId":"max_verstappen","lap":"32","stop":"1","time":"16:56:30","duration":"23.532"}]}]}}}
+    }
+}

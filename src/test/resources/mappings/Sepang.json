@@ -1,0 +1,11 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/api/f1/circuits/sepang.json"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": {"MRData":{"series":"f1","limit":"30","offset":"0","total":"1","CircuitTable":{"circuitId":"sepang","Circuits":[{"circuitId":"sepang","circuitName":"Sepang International Circuit","Location":{"lat":"2.76083","long":"101.738","locality":"Kuala Lumpur","country":"Malaysia"}}]}}}
+    }
+}

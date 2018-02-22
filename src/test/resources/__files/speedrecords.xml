@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<speedRecords>
+	<car make="Benz" model="Velo" country="Germany">
+		<year>1894</year>
+		<speed unit="mph">12</speed>
+		<speed unit="kmh">20</speed>
+	</car>
+	<car make="Jaguar" model="XK120" country="UK">
+		<year>1949</year>
+		<speed unit="mph">124</speed>
+		<speed unit="kmh">200</speed>
+	</car>
+	<car make="Mercedes-Benz" model="300SL" country="Germany">
+		<year>1955</year>
+		<speed unit="mph">150</speed>
+		<speed unit="kmh">242</speed>
+	</car>
+	<car make="Aston Martin" model="DB4" country="UK">
+		<year>1959</year>
+		<speed unit="mph">152</speed>
+		<speed unit="kmh">245</speed>
+	</car>
+	<car make="Iso" model="Grifo" country="Italy">
+		<year>1963</year>
+		<speed unit="mph">161</speed>
+		<speed unit="kmh">259</speed>
+	</car>
+	<car make="AC" model="Cobra" country="UK">
+		<year>1965</year>
+		<speed unit="mph">165</speed>
+		<speed unit="kmh">266</speed>
+	</car>
+	<car make="Lamborghini" model="Miura" country="Italy">
+		<year>1967</year>
+		<speed unit="mph">171</speed>
+		<speed unit="kmh">275</speed>
+	</car>
+</speedRecords>

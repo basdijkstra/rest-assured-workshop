@@ -1,0 +1,11 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/api/f1/circuits/monza.json"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": {"MRData":{"series":"f1","limit":"30","offset":"0","total":"1","CircuitTable":{"circuitId":"monza","Circuits":[{"circuitId":"monza","circuitName":"Autodromo Nazionale di Monza","Location":{"lat":"45.6156","long":"9.28111","locality":"Monza","country":"Italy"}}]}}}
+    }
+}

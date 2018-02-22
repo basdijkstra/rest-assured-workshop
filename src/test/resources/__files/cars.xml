@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cars>
+	<car make="Alfa Romeo" model="Giulia">
+		<country>Italy</country>
+		<year>2016</year>
+	</car>
+	<car make="Aston Martin" model="DB11">
+		<country>UK</country>
+		<year>1949</year>
+	</car>
+	<car make="Toyota" model="Auris">
+		<country>Japan</country>
+		<year>2012</year>
+	</car>
+</cars>
+

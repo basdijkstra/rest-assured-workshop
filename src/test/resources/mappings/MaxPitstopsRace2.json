@@ -1,0 +1,11 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/api/f1/2015/2/drivers/max_verstappen/pitstops.json"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": {"MRData":{"series":"f1","limit":"30","offset":"0","total":"3","RaceTable":{"season":"2015","round":"2","driverId":"max_verstappen","Races":[{"season":"2015","round":"2","raceName":"Malaysian Grand Prix","Circuit":{"circuitId":"sepang","circuitName":"Sepang International Circuit","Location":{"lat":"2.76083","long":"101.738","locality":"Kuala Lumpur","country":"Malaysia"}},"date":"2015-03-29","time":"07:00:00Z","PitStops":[{"driverId":"max_verstappen","lap":"4","stop":"1","time":"15:11:22","duration":"29.516"},{"driverId":"max_verstappen","lap":"20","stop":"2","time":"15:41:45","duration":"25.655"},{"driverId":"max_verstappen","lap":"40","stop":"3","time":"16:17:48","duration":"24.768"}]}]}}}
+    }
+}

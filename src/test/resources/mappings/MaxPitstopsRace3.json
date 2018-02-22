@@ -1,0 +1,11 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/api/f1/2015/3/drivers/max_verstappen/pitstops.json"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": {"MRData":{"series":"f1","limit":"30","offset":"0","total":"2","RaceTable":{"season":"2015","round":"3","driverId":"max_verstappen","Races":[{"season":"2015","round":"3","raceName":"Chinese Grand Prix","Circuit":{"circuitId":"shanghai","circuitName":"Shanghai International Circuit","Location":{"lat":"31.3389","long":"121.22","locality":"Shanghai","country":"China"}},"date":"2015-04-12","time":"06:00:00Z","PitStops":[{"driverId":"max_verstappen","lap":"12","stop":"1","time":"14:24:59","duration":"24.256"},{"driverId":"max_verstappen","lap":"32","stop":"2","time":"15:00:35","duration":"23.258"}]}]}}}
+    }
+}

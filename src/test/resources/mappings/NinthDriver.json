@@ -1,0 +1,11 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/api/f1/drivers/vettel.json"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": { "MRData":{"series":"f1","limit":"30","offset":"0","total":"1","DriverTable":{"driverId":"vettel","Drivers":[{"driverId":"vettel","permanentNumber":"5","code":"VET","givenName":"Sebastian","familyName":"Vettel","dateOfBirth":"1987-07-03","nationality":"German"}]}}}
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/xml/speedrecords"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/xml" },
+        "bodyFileName": "speedrecords.xml"
+    }
+}

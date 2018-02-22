@@ -1,0 +1,11 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/api/f1/2015/4/drivers/max_verstappen/pitstops.json"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": {"MRData":{"series":"f1","limit":"30","offset":"0","total":"2","RaceTable":{"season":"2015","round":"4","driverId":"max_verstappen","Races":[{"season":"2015","round":"4","raceName":"Bahrain Grand Prix","Circuit":{"circuitId":"bahrain","circuitName":"Bahrain International Circuit","Location":{"lat":"26.0325","long":"50.5106","locality":"Sakhir","country":"Bahrain"}},"date":"2015-04-19","time":"15:00:00Z","PitStops":[{"driverId":"max_verstappen","lap":"6","stop":"1","time":"18:14:10","duration":"39.338"},{"driverId":"max_verstappen","lap":"30","stop":"2","time":"18:55:37","duration":"27.225"}]}]}}}
+    }
+}
