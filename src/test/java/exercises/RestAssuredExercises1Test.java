@@ -108,6 +108,7 @@ public class RestAssuredExercises1Test {
 		given().
 			spec(requestSpec).
 		when().
+
 		then();
 	}
 }
