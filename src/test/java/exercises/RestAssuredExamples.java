@@ -3,6 +3,7 @@ package exercises;
 import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 import com.tngtech.java.junit.dataprovider.UseDataProvider;
+import dataentities.Address;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.*;
@@ -13,14 +14,15 @@ import org.junit.runner.RunWith;
 import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.requestSpecification;
 import static org.hamcrest.Matchers.*;
 
 @RunWith(DataProviderRunner.class)
-@Ignore
 public class RestAssuredExamples {
 
     private static String myAuthenticationToken;
 
+    /*
     @BeforeClass
     public static void retrieveToken() {
 
@@ -36,6 +38,7 @@ public class RestAssuredExamples {
                 extract().
                 path("");
     }
+    */
 
     @Test
     public void usePreviouslyStoredAuthToken() {
@@ -203,5 +206,32 @@ public class RestAssuredExamples {
         then().
             assertThat().
             statusCode(200);
+    }
+
+    @Test
+    public void serializeAddressToJson() {
+
+        Address myAddress = new Address("My street", 1, 1234, "Amsterdam");
+
+        given().
+            body(myAddress).
+        when().
+            post("http://localhost:9876/address").
+        then().
+            assertThat().
+            statusCode(200);
+    }
+
+    @Test
+    public void deserializeJsonToAddress() {
+
+        Address myAddress =
+
+            given().
+            when().
+                get("http://localhost:9876/address").
+                as(Address.class);
+
+        Assert.assertEquals("Amsterdam", myAddress.getCity());
     }
 }

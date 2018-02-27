@@ -18,6 +18,10 @@ java -jar wiremock-standalone-2.15.0.jar --port 9876
 ```
 In the (unlikely) event that you've already got a process running on port 9876, you can run the mock server on any available port. Please make sure to change the references to the port in the `@BeforeClass` methods as well, or your tests will likely never pass...
 
+Slides
+---
+The .odp file in the root folder contains all slides from the workshop. Again, feel free to use, share and adapt them to fit your own requirements.
+
 Comments? Saying thanks?
 ---
-Feel free to file an issue here or leave your comments at bas@ontestautomation.com.
+Feel free to file an issue here or send me an email at bas@ontestautomation.com.

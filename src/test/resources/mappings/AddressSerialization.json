@@ -1,0 +1,11 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/address"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": { "result": "OK" }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/address"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": { "street": "My street", "houseNumber": 1,"zipCode": 1234, "city": "Amsterdam" }
+    }
+}
