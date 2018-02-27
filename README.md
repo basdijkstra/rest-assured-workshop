@@ -25,3 +25,7 @@ The .odp file in the root folder contains all slides from the workshop. Again, f
 Comments? Saying thanks?
 ---
 Feel free to file an issue here or send me an email at bas@ontestautomation.com.
+
+I'd rather have you deliver the workshop instead...
+---
+Sure, I'd love to. Again, send me an email and I'll be happy to discuss options. In house, online, or at your conference, I'm sure we can work something out.
