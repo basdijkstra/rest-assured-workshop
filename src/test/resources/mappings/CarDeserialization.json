@@ -1,0 +1,11 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/car/getcar/alfaromeogiulia"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": { "make": "Alfa Romeo", "model": "Giulia", "year": 2016 }
+    }
+}

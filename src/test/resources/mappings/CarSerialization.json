@@ -1,0 +1,14 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/car/postcar",
+		"bodyPatterns":[{
+			"equalToJson": { "make": "Ford", "model": "Focus", "year": 2012 }
+		}] 
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": { "result": "OK" }
+    }
+}
