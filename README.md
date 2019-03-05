@@ -14,13 +14,13 @@ Running the mock server
 ---
 In order to get a response from the WireMock mock server, you'll need to start it before you run your tests. You can do so by running this command from the `src/test/resources` folder:
 ```
-java -jar wiremock-standalone-2.15.0.jar --port 9876
+java -jar wiremock-standalone-2.21.0.jar --port 9876
 ```
 In the (unlikely) event that you've already got a process running on port 9876, you can run the mock server on any available port. Please make sure to change the references to the port in the `@BeforeClass` methods as well, or your tests will likely never pass...
 
 Slides
 ---
-The .odp file in the root folder contains all slides from the workshop. Again, feel free to use, share and adapt them to fit your own requirements.
+The .pptx/.pdf/.odp file in the root folder contains all slides from the workshop. Again, feel free to use, share and adapt them to fit your own requirements.
 
 Comments? Saying thanks?
 ---
@@ -28,4 +28,4 @@ Feel free to file an issue here or send me an email at bas@ontestautomation.com.
 
 I'd rather have you deliver the workshop instead...
 ---
-Sure, I'd love to. Again, send me an email and I'll be happy to discuss options. In house, online, or at your conference, I'm sure we can work something out.
+Sure, I'd love to. Again, send me an email and I'll be happy to discuss options. In house or at your conference, I'm sure we can work something out.
