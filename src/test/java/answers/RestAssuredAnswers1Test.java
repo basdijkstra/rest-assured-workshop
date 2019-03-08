@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import io.restassured.specification.*;
 import org.junit.*;
 
@@ -17,114 +18,129 @@ public class RestAssuredAnswers1Test {
 		requestSpec = new RequestSpecBuilder().
 			setBaseUri("http://localhost").
 			setPort(9876).
-			setBasePath("/api/f1").
 			build();
 	}
 	
 	/*******************************************************
-	 * Send a GET request to /2016/drivers.json
+	 * Send a GET request to /us/90210
 	 * and check that the response has HTTP status code 200
 	 ******************************************************/
 	
 	@Test
-	public void checkResponseCodeForCorrectRequest() {
+	public void requestUsZipCode90210_checkResponseCode_expect200() {
 				
 		given().
 			spec(requestSpec).
 		when().
-			get("/2016/drivers.json").
+			get("/us/90210").
 		then().
 			assertThat().
 			statusCode(200);
 	}
 	
 	/*******************************************************
-	 * Send a GET request to /incorrect.json
+	 * Send a GET request to /us/99999
 	 * and check that the answer has HTTP status code 404
 	 ******************************************************/
 	
 	@Test
-	public void checkResponseCodeForIncorrectRequest() {
+	public void requestUsZipCode99999_checkResponseCode_expect404() {
 				
 		given().
 			spec(requestSpec).
 		when().
-			get("/incorrect.json").
+			get("/us/99999").
 		then().
 			assertThat().
 			statusCode(404);
 	}
 	
 	/*******************************************************
-	 * Send a GET request to /2016/drivers.json
+	 * Send a GET request to /us/90210
 	 * and check that the response is in JSON format 
 	 ******************************************************/
 	
 	@Test
-	public void checkResponseContentTypeJson() {
+	public void requestUsZipCode90210_checkContentType_expectApplicationJson() {
 				
 		given().
 			spec(requestSpec).
 		when().
-			get("/2016/drivers.json").
+			get("/us/90210").
 		then().
 			assertThat().
-			contentType("application/json");
+			contentType(ContentType.JSON);
 	}
 	
 	/***********************************************
-	 * Retrieve circuit information for the first race
-	 * of the 2014 season and check the circuitId equals
-	 * albert_park
-	 * Use /2014/1/circuits.json
+	 * Send a GET request to /us/90210 and check
+	 * that the state associated with the first place
+	 * in the list returned is equal to 'California'
 	 **********************************************/
 	
 	@Test
-	public void checkTheFirstRaceOf2014WasAtAlbertPark() {
+	public void requestUsZipCode90210_checkStateForFirstPlace_expectCalifornia() {
 				
 		given().
 			spec(requestSpec).
 		when().
-			get("/2014/1/circuits.json").
+			get("/us/90210").
 		then().
 			assertThat().
-			body("MRData.CircuitTable.Circuits.circuitId[0]", equalTo("albert_park"));
+			body("places[0].state", equalTo("California"));
 	}
 	
 	/***********************************************
-	 * Retrieve the list of circuits for the 2014
-	 * season and check that it contains silverstone
-	 * Use /2014/circuits.json
+	 * Send a GET request to /de/24848 and check that
+	 * the list of place names returned contains the
+	 * value 'Kropp'
 	 **********************************************/
 	
 	@Test
-	public void checkThereWasARaceAtSilverstoneIn2014() {
+	public void requestDeZipCode24848_checkListOfPlaceNames_expectContainsKropp() {
 		
 		given().
 			spec(requestSpec).
 		when().
-			get("/2014/circuits.json").
+			get("/de/24848").
 		then().
 			assertThat().
-			body("MRData.CircuitTable.Circuits.circuitId", hasItem("silverstone"));
+			body("places.'place name'", hasItem("Kropp"));
 	}
-	
+
 	/***********************************************
-	 * Retrieve the list of circuits for the 2014
-	 * season and check that it does not contain
-	 * nurburgring
-	 * USe /2014/circuits.json
+	 * Send a GET request to /de/24848 and check that
+	 * the list of place names returned does not
+	 * contain the value 'Frankfurt'
 	 **********************************************/
 	
 	@Test
-	public void checkThereWasNoRaceAtNurburgringIn2014() {
+	public void requestDeZipCode24848_checkListOfPlaceNames_expectDoesNotContainFrankfurt() {
 		
 		given().
 			spec(requestSpec).
 		when().
-			get("/2014/circuits.json").
+			get("/de/24848").
 		then().
 			assertThat().
-			body("MRData.CircuitTable.Circuits.circuitId", not(hasItem("nurburgring")));
+			body("places.'place name'", not(hasItem("Frankfurt")));
+	}
+
+	/***********************************************
+	 * Send a GET request to /de/24848 and check that
+	 * the list of place names returned is a
+	 * collection of size 4
+	 **********************************************/
+
+	@Test
+	public void requestDeZipCode24848_checkNumberOfPlaceNames_expect4() {
+
+		given().
+			spec(requestSpec).
+		when().
+			get("/de/24848").
+		then().
+			assertThat().
+			body("places.'place name'", hasSize(4));
 	}
 }

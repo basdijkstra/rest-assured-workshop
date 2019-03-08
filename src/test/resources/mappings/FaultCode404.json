@@ -1,9 +1,0 @@
-{
-    "request": {
-        "method": "GET",
-        "url": "/api/f1/incorrect.json"
-    },
-    "response": {
-        "status": 404
-    }
-}

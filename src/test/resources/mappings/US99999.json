@@ -1,0 +1,11 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/us/99999"
+    },
+    "response": {
+        "status": 404,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": {"error": "zip code 99999 does not exist for country code us"}
+    }
+}

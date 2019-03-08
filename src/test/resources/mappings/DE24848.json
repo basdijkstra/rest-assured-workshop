@@ -1,0 +1,12 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/de/24848"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": {"post code": "24848","country": "Germany","country abbreviation": "DE","places": [{"place name": "Alt Bennebek","longitude": "9.4333","state":"Schleswig-Holstein","state abbreviation": "SH","latitude": "54.3833"},{"place name": "Klein Rheide","longitude": "9.4833","state":"Schleswig-Holstein","state abbreviation": "SH","latitude": "54.45"},{"place name": "Kropp","longitude": "9.5087","state": "Schleswig-Holstein","state abbreviation": "SH","latitude": "54.4111"},{"place name": "Klein Bennebek","longitude": "9.45","state": "Schleswig-Holstein","state abbreviation": "SH","latitude": "54.4"}]}
+    }
+}
+
