@@ -20,7 +20,6 @@ public class RestAssuredAnswers3Test {
 		requestSpec = new RequestSpecBuilder().
 			setBaseUri("http://localhost").
 			setPort(9876).
-			setBasePath("/api/f1").
 			build();
 	}
 		
@@ -28,8 +27,8 @@ public class RestAssuredAnswers3Test {
 	 * Create a static ResponseSpecification that checks whether:
 	 * - the response has statusCode 200
 	 * - the response contentType is JSON
-	 * - the value of MRData.CircuitTable.Circuits.circuitName[0]
-	 *   is equal to 'Albert Park Grand Prix Circuit'
+	 * - the value of 'country' in the response body
+	 *   is equal to 'United States'
 	 ******************************************************/
 	
 	private static ResponseSpecification responseSpec;
@@ -40,39 +39,16 @@ public class RestAssuredAnswers3Test {
 		responseSpec = new ResponseSpecBuilder().
 				expectStatusCode(200).
 				expectContentType(ContentType.JSON).
-				expectBody("MRData.CircuitTable.Circuits.circuitName[0]", equalTo("Albert Park Grand Prix Circuit")).
+				expectBody("country", equalTo("United States")).
 				build();		
 	}
-	
+
 	/*******************************************************
-	 * Retrieve the list of 2016 Formula 1 drivers and store
-	 * the driverId for the ninth mentioned driver in a
-	 * static String variable
-	 * Use /2016/drivers.json
-	 ******************************************************/
-	
-	private static String ninthDriverId;
-	
-	@BeforeClass
-	public static void getNinthDriverId() {
-		
-		ninthDriverId = 
-				
-		given().
-			spec(requestSpec).
-		when().
-			get("/2016/drivers.json").
-		then().
-			extract().
-			path("MRData.DriverTable.Drivers[8].driverId");
-	}
-	
-	/*******************************************************
-	 * Retrieve the circuit data for the first race in 2014
+	 * Perform a GET request to /us/90210
 	 * Use the previously created ResponseSpecification to
 	 * execute the specified checks
-	 * Use /2014/1/circuits.json
-	 * Additionally, check that the circuit is located in Melbourne
+	 * Additionally, check that 'country abbreviation' is
+	 * equal to 'US'
 	 ******************************************************/
 	
 	@Test
@@ -81,31 +57,33 @@ public class RestAssuredAnswers3Test {
 		given().
 			spec(requestSpec).
 		when().
-			get("/2014/1/circuits.json").
+			get("/us/90210").
 		then().
 			spec(responseSpec).
 		and().
-			body("MRData.CircuitTable.Circuits.Location[0].locality",equalTo("Melbourne"));
+			body("'country abbreviation'",equalTo("US"));
 	}
-	
+
 	/*******************************************************
-	 * Retrieve the driver data for the ninth mentioned driver
-	 * Use the previously extracted driverId to do this
-	 * Use it as a path parameter to /drivers/<driverId>.json
-	 * Check that the driver is German
+	 * Perform a GET request to /us/90210
+	 * Extract the value of the 'country' element in the
+	 * response into a String variable actualCountry
+	 * Use the given JUnit assertion to check on its length
 	 ******************************************************/
-	
+
 	@Test
-	public void useExtractedDriverId() {
-		
+	public void extractCountryFromResponse() {
+
+		String actualCountry =
+
 		given().
 			spec(requestSpec).
-		and().
-			pathParam("driverId",ninthDriverId).
 		when().
-			get("/drivers/{driverId}.json").
+			get("/us/90210").
 		then().
-			assertThat().
-			body("MRData.DriverTable.Drivers[0].nationality", equalTo("German"));
+			extract().
+			path("country");
+
+		Assert.assertEquals("United States", actualCountry);
 	}
 }

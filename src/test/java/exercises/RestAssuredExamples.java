@@ -157,7 +157,7 @@ public class RestAssuredExamples {
 
         given().
         when().
-            get("http://ergast.com/api/f1/circuits/monza.json").
+            get("http://api.zippopotam.us/us/90210").
         then().
             assertThat().
             time(lessThan(100L), TimeUnit.MILLISECONDS);
@@ -194,8 +194,7 @@ public class RestAssuredExamples {
 
         requestSpec =
             new RequestSpecBuilder().
-                setBaseUri("http://ergast.com").
-                setBasePath("/api/f1").
+                setBaseUri("http://api.zippopotam.us").
                 build();
     }
 
@@ -205,7 +204,7 @@ public class RestAssuredExamples {
         given().
             spec(requestSpec).
         when().
-            get("/circuits/monza.json").
+            get("/us/90210.json").
         then().
             assertThat().
             statusCode(200);
