@@ -1,0 +1,11 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/ca/Y1A"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": {"post code": "Y1A","country": "Canada","country abbreviation": "CA","places": [{"place name": "Whitehorse","longitude": "-118.4065","state": "Yukon","state abbreviation": "YT","latitude": "34.0901"}]}
+    }
+}

@@ -54,10 +54,10 @@ public class RestAssuredExamples {
     }
 
     @DataProvider
-    public static Object[][] driverData() {
+    public static Object[][] zipCodeData() {
         return new Object[][] {
-            { "hamilton", "44" },
-            { "max_verstappen", "33" }
+            { "us", "90210", "United States" },
+            { "ca", "B2A", "Canada" }
         };
     }
 
@@ -101,25 +101,28 @@ public class RestAssuredExamples {
     public void usePathParameter() {
 
         given().
-            pathParam("driver","max_verstappen").
+            pathParam("countryCode","us").
+            pathParam("zipCode", "90210").
         when().
-            get("http://ergast.com/api/f1/drivers/{driver}.json").
+            get("http://api.zippopotam.us/{countryCode}/{zipCode}").
         then().
             assertThat().
-            body("MRData.DriverTable.Drivers.permanentNumber[0]", equalTo("33"));
+            body("country", equalTo("UnitedStates"));
     }
 
     @Test
-    @UseDataProvider("driverData")
-    public void checkPermanentNumberForDriver(String driverName, String permanentNumber) {
+    @UseDataProvider("zipCodeData")
+    public void checkCountryForCountryCodeAndZipCode
+        (String countryCode, String zipCode, String expectedCountry) {
 
         given().
-            pathParam("driver", driverName).
+            pathParam("countryCode", countryCode).
+            pathParam("zipCode", zipCode).
         when().
-            get("http://ergast.com/api/f1/drivers/{driver}.json").
+            get("http://api.zippopotam.us/{countryCode}/{zipCode}").
         then().
             assertThat().
-            body("MRData.DriverTable.Drivers.permanentNumber[0]",equalTo(permanentNumber));
+            body("country",equalTo(expectedCountry));
     }
 
     @Test
