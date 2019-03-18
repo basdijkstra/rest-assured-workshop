@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<response>
+	<postcode>24848</postcode>
+	<country>Germany</country>
+	<countryAbbreviation>DE</countryAbbreviation>
+	<places>
+		<place longitude="9.4333" latitude="54.3833">
+			<placeName>Alt Bennebek</placeName>
+			<state>Schleswig-Holstein</state>
+			<stateAbbreviation>SH</stateAbbreviation>
+		</place>
+		<place longitude="9.4833" latitude="54.45">
+			<placeName>Klein Rheide</placeName>
+			<state>Schleswig-Holstein</state>
+			<stateAbbreviation>SH</stateAbbreviation>
+		</place>
+		<place longitude="9.5087" latitude="54.4111">
+			<placeName>Kropp</placeName>
+			<state>Schleswig-Holstein</state>
+			<stateAbbreviation>SH</stateAbbreviation>
+		</place>
+		<place longitude="9.45" latitude="54.4">
+			<placeName>Klein Bennebek</placeName>
+			<state>Schleswig-Holstein</state>
+			<stateAbbreviation>SH</stateAbbreviation>
+		</place>
+	</places>
+</response>

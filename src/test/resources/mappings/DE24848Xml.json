@@ -1,0 +1,11 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/xml/de/24848"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/xml" },
+        "bodyFileName": "24848.xml"
+    }
+}
