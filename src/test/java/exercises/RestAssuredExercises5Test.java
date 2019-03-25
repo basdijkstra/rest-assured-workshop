@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class RestAssuredExercises6Test {
+public class RestAssuredExercises5Test {
 
 	private static RequestSpecification requestSpec;
 
@@ -23,15 +23,18 @@ public class RestAssuredExercises6Test {
 			setContentType(ContentType.JSON).
 			build();
 	}
-		
+
 	/*******************************************************
 	 * Create a new Car object that represents a 2012 Ford Focus
 	 * POST this object to /cars/postcar
 	 * Verify that the response HTTP status code is equal to 200
 	 ******************************************************/
-	
+
 	@Test
-	public void checkThatPostingA2012FordFocusReturnsHttp200() {
+	public void postCarObject_checkResponseHttpStatusCode_expect200() {
+
+		// Create an instance of the Car object first using
+		// Car myCar = new Car(<ADD PARAMETER VALUES HERE>);
 
 		given().
 			spec(requestSpec).
@@ -48,12 +51,16 @@ public class RestAssuredExercises6Test {
 	 ******************************************************/
 
 	@Test
-	public void checkThatRetrievingAnAlfaRomeoGiuliaShowsModelYear2016() {
+	public void getCarObject_checkModelYear_expect2016() {
+
+		// Deserialize the response to a car object first
+		// Use Car myCar = given(). ...
 
 		given().
 			spec(requestSpec).
-		when();
+			when();
 
-		// Put your assert here
+		// Then, write a JUnit assertion to verify the modelYear
+		// using Assert.assertEquals(<expected>, <actual>)
 	}
 }

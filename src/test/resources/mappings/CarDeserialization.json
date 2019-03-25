@@ -6,6 +6,6 @@
     "response": {
         "status": 200,
 		"headers": { "Content-Type": "application/json" },
-        "jsonBody": { "make": "Alfa Romeo", "model": "Giulia", "year": 2016 }
+        "jsonBody": { "make": "Alfa Romeo", "model": "Giulia", "modelYear": 2016 }
     }
 }

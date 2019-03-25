@@ -9,9 +9,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 
-public class RestAssuredAnswers6Test {
+public class RestAssuredAnswers5Test {
 
 	private static RequestSpecification requestSpec;
 
@@ -32,7 +31,7 @@ public class RestAssuredAnswers6Test {
 	 ******************************************************/
 	
 	@Test
-	public void checkThatPostingA2012FordFocusReturnsHttp200() {
+	public void postCarObject_checkResponseHttpStatusCode_expect200() {
 
 		Car myCar = new Car("Ford", "Focus", 2012);
 
@@ -56,7 +55,7 @@ public class RestAssuredAnswers6Test {
 	 ******************************************************/
 
 	@Test
-	public void checkThatRetrievingAnAlfaRomeoGiuliaShowsModelYear2016() {
+	public void getCarObject_checkModelYear_expect2016() {
 
 		Car myCar = given().
 			spec(requestSpec).
@@ -64,6 +63,6 @@ public class RestAssuredAnswers6Test {
 			get("/car/getcar/alfaromeogiulia").
 			as(Car.class);
 
-		Assert.assertEquals(2016, myCar.getYear());
+		Assert.assertEquals(2016, myCar.getModelYear());
 	}
 }
