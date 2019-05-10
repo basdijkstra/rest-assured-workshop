@@ -1,16 +1,20 @@
 package answers;
 
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.http.ContentType;
 import io.restassured.specification.*;
 import org.junit.*;
 
 public class RestAssuredAnswers1Test {
 
 	private static RequestSpecification requestSpec;
+
+	@Rule
+	public WireMockRule wireMockRule = new WireMockRule(options().port(9876));
 	
 	@BeforeClass
 	public static void createRequestSpecification() {
@@ -69,7 +73,7 @@ public class RestAssuredAnswers1Test {
 			get("/us/90210").
 		then().
 			assertThat().
-			contentType(ContentType.JSON);
+			contentType(equalTo("application/json"));
 	}
 	
 	/***********************************************

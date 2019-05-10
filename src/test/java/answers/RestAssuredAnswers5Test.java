@@ -1,18 +1,21 @@
 package answers;
 
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import dataentities.Car;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static io.restassured.RestAssured.given;
 
 public class RestAssuredAnswers5Test {
 
 	private static RequestSpecification requestSpec;
+
+	@Rule
+	public WireMockRule wireMockRule = new WireMockRule(options().port(9876));
 
 	@BeforeClass
 	public static void createRequestSpecification() {

@@ -14,6 +14,7 @@
         <junit.version>4.12</junit.version>
         <junit.dataprovider.version>2.4</junit.dataprovider.version>
         <jackson.databind.version>2.9.8</jackson.databind.version>
+        <wiremock.version>2.23.2</wiremock.version>
     </properties>
     <dependencies>
         <dependency>
@@ -38,6 +39,12 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.databind.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.tomakehurst</groupId>
+            <artifactId>wiremock-jre8</artifactId>
+            <version>${wiremock.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

@@ -1,20 +1,21 @@
 package exercises;
 
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.builder.ResponseSpecBuilder;
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import io.restassured.builder.*;
 import io.restassured.http.ContentType;
-import io.restassured.specification.RequestSpecification;
-import io.restassured.specification.ResponseSpecification;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import io.restassured.specification.*;
+import org.junit.*;
 
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 public class RestAssuredExercises3Test {
 
 	private static RequestSpecification requestSpec;
+
+	@Rule
+	public WireMockRule wireMockRule = new WireMockRule(options().port(9876));
 
 	@BeforeClass
 	public static void createRequestSpecification() {
@@ -61,7 +62,7 @@ public class RestAssuredExercises3Test {
 	 * Perform a GET request to /us/90210
 	 * Extract the value of the 'country' element in the
 	 * response into a String variable actualCountry
-	 * Use the given JUnit assertion to check on its length
+	 * Use the given JUnit assertion to check on its value
 	 ******************************************************/
 
 	@Test

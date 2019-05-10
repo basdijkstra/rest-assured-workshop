@@ -12,11 +12,7 @@ All API calls that are used in the examples and exercises have been mocked using
 
 Running the mock server
 ---
-In order to get a response from the WireMock mock server, you'll need to start it before you run your tests. You can do so by running this command from the `src/test/resources` folder:
-```
-java -jar wiremock-standalone-2.21.0.jar --port 9876
-```
-In the (unlikely) event that you've already got a process running on port 9876, you can run the mock server on any available port. Please make sure to change the references to the port in the `@BeforeClass` methods as well, or your tests will likely never pass...
+The mock server used to respond to the API calls you're making in the exercises is started and stopped automatically using a JUnit @Rule.
 
 Slides
 ---

@@ -1,18 +1,21 @@
 package exercises;
 
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import dataentities.Car;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static io.restassured.RestAssured.given;
 
 public class RestAssuredExercises5Test {
 
 	private static RequestSpecification requestSpec;
+
+	@Rule
+	public WireMockRule wireMockRule = new WireMockRule(options().port(9876));
 
 	@BeforeClass
 	public static void createRequestSpecification() {
@@ -26,7 +29,7 @@ public class RestAssuredExercises5Test {
 
 	/*******************************************************
 	 * Create a new Car object that represents a 2012 Ford Focus
-	 * POST this object to /cars/postcar
+	 * POST this object to /car/postcar
 	 * Verify that the response HTTP status code is equal to 200
 	 ******************************************************/
 
@@ -34,7 +37,7 @@ public class RestAssuredExercises5Test {
 	public void postCarObject_checkResponseHttpStatusCode_expect200() {
 
 		// Create an instance of the Car object first using
-		// Car myCar = new Car(<ADD PARAMETER VALUES HERE>);
+
 
 		given().
 			spec(requestSpec).

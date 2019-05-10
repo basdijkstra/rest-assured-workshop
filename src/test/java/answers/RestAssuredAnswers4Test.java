@@ -1,7 +1,10 @@
 package answers;
 
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
+
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import org.junit.*;
@@ -9,6 +12,9 @@ import org.junit.*;
 public class RestAssuredAnswers4Test {
 
 	private static RequestSpecification requestSpec;
+
+	@Rule
+	public WireMockRule wireMockRule = new WireMockRule(options().port(9876));
 
 	@BeforeClass
 	public static void createRequestSpecification() {

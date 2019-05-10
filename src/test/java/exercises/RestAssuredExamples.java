@@ -1,11 +1,8 @@
 package exercises;
 
-import com.tngtech.java.junit.dataprovider.DataProvider;
-import com.tngtech.java.junit.dataprovider.DataProviderRunner;
-import com.tngtech.java.junit.dataprovider.UseDataProvider;
+import com.tngtech.java.junit.dataprovider.*;
 import dataentities.Address;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.builder.*;
 import io.restassured.http.*;
 import io.restassured.specification.*;
 import org.junit.*;
@@ -14,7 +11,6 @@ import org.junit.runner.RunWith;
 import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.requestSpecification;
 import static org.hamcrest.Matchers.*;
 
 @RunWith(DataProviderRunner.class)
