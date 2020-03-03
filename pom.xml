@@ -16,6 +16,7 @@
         <jackson.databind.version>2.10.3</jackson.databind.version>
         <wiremock.version>2.26.2</wiremock.version>
         <slf4j.version>1.7.30</slf4j.version>
+        <lombok.version>1.18.12</lombok.version>
     </properties>
     <dependencies>
         <dependency>
@@ -52,6 +53,12 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-nop</artifactId>
             <version>${slf4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

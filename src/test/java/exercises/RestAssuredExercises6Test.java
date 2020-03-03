@@ -1,6 +1,7 @@
 package exercises;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import dataentities.Photo;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
@@ -66,11 +67,13 @@ public class RestAssuredExercises6Test {
 		 * Perform a GET to /albums/XYZ/photos, where XYZ is the
 		 * id of the fifth album in the previously extracted list
 		 * of album IDs (hint: use get(index) on the list).
-		 * Extract all photo titles into a variable of type
-		 * List<String> (again using a 'findAll' expression).
+		 * Deserialize the list of photos returned into a variable
+		 * of type List<Photo>. Hint: see
+		 * https://stackoverflow.com/questions/21725093/rest-assured-deserialize-response-json-as-listpojo
+		 * (the accepted answer should help you solve this one).
 		 ******************************************************/
 
-		List<String> photoTitles;
+		List<Photo> photos;
 
 		/*******************************************************
 		 * Use a JUnit assertEquals to verify that the title of

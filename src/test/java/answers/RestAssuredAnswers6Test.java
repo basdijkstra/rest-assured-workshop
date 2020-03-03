@@ -2,6 +2,7 @@ package answers;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import dataentities.Car;
+import dataentities.Photo;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
@@ -10,6 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
@@ -84,24 +86,23 @@ public class RestAssuredAnswers6Test {
 		 * Perform a GET to /albums/XYZ/photos, where XYZ is the
 		 * id of the fifth album in the previously extracted list
 		 * of album IDs (hint: use get(index) on the list).
-		 * Extract all photo titles into a variable of type
-		 * List<String> (again using a 'findAll' expression).
+		 * Deserialize the list of photos returned into a variable
+		 * of type List<Photo>. Hint: see
+		 * https://stackoverflow.com/questions/21725093/rest-assured-deserialize-response-json-as-listpojo
+		 * (the accepted answer should help you solve this one).
 		 ******************************************************/
 
-		List<String> photoTitles = given().
+		List<Photo> photos = Arrays.asList(given().
 				spec(requestSpec).
 				pathParam("albumId", albumIds.get(4)).
 			when().
-				get("/albums/{albumId}/photos").
-			then().
-				extract().
-				path(String.format("findAll{it.albumId==%d}.title", albumIds.get(4)));
+				get("/albums/{albumId}/photos").as(Photo[].class));
 
 		/*******************************************************
 		 * Use a JUnit assertEquals to verify that the title of
 		 * the 32nd photo in the list equals 'pariatur sunt eveniet'
 		 ******************************************************/
 
-		Assert.assertEquals("pariatur sunt eveniet", photoTitles.get(31));
+		Assert.assertEquals("pariatur sunt eveniet", photos.get(31).getTitle());
 	}
 }

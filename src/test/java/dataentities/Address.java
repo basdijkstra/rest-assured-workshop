@@ -1,5 +1,8 @@
 package dataentities;
 
+import lombok.Data;
+
+@Data
 public class Address {
 
     private String street;
@@ -17,20 +20,4 @@ public class Address {
         this.zipCode = zipCode;
         this.city = city;
     }
-
-    public String getStreet() { return this.street; }
-
-    public int getHouseNumber() { return this.houseNumber; }
-
-    public int getZipCode() { return this.zipCode; }
-
-    public String getCity() { return this.city; }
-
-    public void setStreet(String street) { this.street = street; }
-
-    public void setHouseNumber(int houseNumber) { this.houseNumber = houseNumber; }
-
-    public void setZipCode(int zipCode) { this.zipCode = zipCode; }
-
-    public void setCity(String city) { this.city = city; }
 }
