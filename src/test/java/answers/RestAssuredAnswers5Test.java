@@ -29,7 +29,7 @@ public class RestAssuredAnswers5Test {
 		
 	/*******************************************************
 	 * Create a new Car object that represents a 2012 Ford Focus
-	 * POST this object to /cars/postcar
+	 * POST this object to /car/postcar
 	 * Verify that the response HTTP status code is equal to 200
 	 ******************************************************/
 	
@@ -50,7 +50,7 @@ public class RestAssuredAnswers5Test {
 	}
 
 	/*******************************************************
-	 * Perform a GET to /cars/getcar/alfaromeogiulia
+	 * Perform a GET to /car/getcar/alfaromeogiulia
 	 * Store the response in a Car object
 	 * Verify, using that object, that the model year = 2016
 	 * Use the standard Assert.assertEquals(expected,actual)

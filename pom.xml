@@ -10,11 +10,12 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <restassured.version>3.3.0</restassured.version>
+        <restassured.version>4.2.0</restassured.version>
         <junit.version>4.12</junit.version>
-        <junit.dataprovider.version>2.4</junit.dataprovider.version>
-        <jackson.databind.version>2.9.8</jackson.databind.version>
-        <wiremock.version>2.23.2</wiremock.version>
+        <junit.dataprovider.version>2.6</junit.dataprovider.version>
+        <jackson.databind.version>2.10.3</jackson.databind.version>
+        <wiremock.version>2.26.2</wiremock.version>
+        <slf4j.version>1.7.30</slf4j.version>
     </properties>
     <dependencies>
         <dependency>
@@ -45,6 +46,12 @@
             <groupId>com.github.tomakehurst</groupId>
             <artifactId>wiremock-jre8</artifactId>
             <version>${wiremock.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>${slf4j.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

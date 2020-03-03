@@ -1,0 +1,11 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/albums/35/photos"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "bodyFileName": "photosforalbum.json"
+    }
+}
