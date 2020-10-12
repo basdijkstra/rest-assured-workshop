@@ -11,7 +11,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <restassured.version>4.2.0</restassured.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <junit.dataprovider.version>2.6</junit.dataprovider.version>
         <jackson.databind.version>2.10.3</jackson.databind.version>
         <wiremock.version>2.26.2</wiremock.version>
