@@ -1,8 +1,5 @@
 package dataentities;
 
-import lombok.Data;
-
-@Data
 public class Car {
 
     private String make;
@@ -16,6 +13,30 @@ public class Car {
 
         this.make = make;
         this.model = model;
+        this.modelYear = modelYear;
+    }
+
+    public String getMake() {
+        return make;
+    }
+
+    public void setMake(String make) {
+        this.make = make;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public int getModelYear() {
+        return modelYear;
+    }
+
+    public void setModelYear(int modelYear) {
         this.modelYear = modelYear;
     }
 }

@@ -1,4 +1,4 @@
-package answers;
+package exercises;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import dataentities.Car;
@@ -10,7 +10,7 @@ import org.junit.*;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static io.restassured.RestAssured.given;
 
-public class RestAssuredAnswers5Test {
+public class RestAssuredExercises5 {
 
 	private static RequestSpecification requestSpec;
 
@@ -26,46 +26,51 @@ public class RestAssuredAnswers5Test {
 			setContentType(ContentType.JSON).
 			build();
 	}
-		
+
 	/*******************************************************
 	 * Create a new Car object that represents a 2012 Ford Focus
+	 * by passing these values to the POJO constructor
+	 *
 	 * POST this object to /car/postcar
+	 *
 	 * Verify that the response HTTP status code is equal to 200
+	 * (note that this will only work if you use these exact values!)
 	 ******************************************************/
-	
+
 	@Test
 	public void postCarObject_checkResponseHttpStatusCode_expect200() {
 
-		Car myCar = new Car("Ford", "Focus", 2012);
+		// Create an instance of the Car object first using
+
 
 		given().
 			spec(requestSpec).
-		and().
-			body(myCar).
 		when().
-			post("/car/postcar").
-		then().
-			assertThat().
-			statusCode(200);
+		then();
 	}
 
 	/*******************************************************
 	 * Perform a GET to /car/getcar/alfaromeogiulia
-	 * Store the response in a Car object
+	 *
+	 * Store the response in a Car object using deserialization
+	 *
 	 * Verify, using that object, that the model year = 2016
+	 *
 	 * Use the standard Assert.assertEquals(expected,actual)
-	 * as provided by JUnit for the assertion
+	 * as provided by JUnit for the assertion, and the
+	 * getModelYear() method to retrieve the actual model year
 	 ******************************************************/
 
 	@Test
 	public void getCarObject_checkModelYear_expect2016() {
 
-		Car myCar = given().
-			spec(requestSpec).
-			when().
-			get("/car/getcar/alfaromeogiulia").
-			as(Car.class);
+		// Deserialize the response to a car object first
+		// Use Car myCar = given(). ...
 
-		Assert.assertEquals(2016, myCar.getModelYear());
+		given().
+			when();
+
+		// Then, write a JUnit assertion to verify the modelYear
+		// using Assert.assertEquals(<expected>, <actual>)
 	}
 }

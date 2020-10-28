@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 import com.tngtech.java.junit.dataprovider.*;
 
 @RunWith(DataProviderRunner.class)
-public class RestAssuredAnswers2Test {
+public class RestAssuredAnswers2 {
 
 	private static RequestSpecification requestSpec;
 
@@ -30,10 +30,12 @@ public class RestAssuredAnswers2Test {
 	
 	/*******************************************************
 	 * Create a DataProvider with three test data rows:
-	 * country code - zip code - state
-	 * us           - 90210    - California
-	 * us           - 12345    - New York
-	 * ca           - Y1A      - Yukon
+	 * ------------------------------------
+	 * country code | zip code | state
+	 * ------------------------------------
+	 * us           | 90210    | California
+	 * us           | 12345    | New York
+	 * ca           | Y1A      | Yukon
 	 ******************************************************/
 	
 	@DataProvider
@@ -46,11 +48,15 @@ public class RestAssuredAnswers2Test {
 	}
 	
 	/*******************************************************
-	 * Request zip code data for given country / zip
+	 * Request zip code data for the given country / zip
 	 * combinations by sending a GET to /<countryCode>/<zipCode>.
+	 *
 	 * Use the test data collection created
 	 * above. Check that the state returned by the API
-	 * matches the expected value. The
+	 * matches the expected value.
+	 *
+	 * Use the GPath expression "places[0].state" to
+	 * extract the required response body element
 	 ******************************************************/
 	
 	@Test

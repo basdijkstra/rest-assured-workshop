@@ -2,6 +2,7 @@ package exercises;
 
 import com.tngtech.java.junit.dataprovider.*;
 import dataentities.Address;
+import io.restassured.authentication.BasicAuthScheme;
 import io.restassured.builder.*;
 import io.restassured.http.*;
 import io.restassured.specification.*;
@@ -16,32 +17,12 @@ import static org.hamcrest.Matchers.*;
 @RunWith(DataProviderRunner.class)
 public class RestAssuredExamples {
 
-    private static String myAuthenticationToken;
-
-    /*
-    @BeforeClass
-    public static void retrieveToken() {
-
-        myAuthenticationToken =
-
-            given().
-                auth().
-                preemptive().
-                basic("username", "password").
-            when().
-                get("https://my.secure/api").
-            then().
-                extract().
-                path("");
-    }
-    */
-
     @Test
     public void usePreviouslyStoredAuthToken() {
 
         given().
             auth().
-            oauth2(myAuthenticationToken).
+            oauth2("myAuthenticationToken").
         when().
             get("https://my.very.secure/api").
         then().
@@ -50,30 +31,57 @@ public class RestAssuredExamples {
     }
 
     @DataProvider
-    public static Object[][] zipCodeData() {
+    public static Object[][] userData() {
         return new Object[][] {
-            { "us", "90210", "United States" },
-            { "ca", "B2A", "Canada" }
+                { 1, "Leanne Graham" },
+                { 2, "Ervin Howell" },
+                { 3, "Clementine Bauch"}
         };
     }
 
     @Test
-    public void validateCountryForZipCode() {
+    public void getUserData_verifyName_shouldBeLeanneGraham() {
 
         given().
         when().
-            get("http://api.zippopotam.us/us/90210").           // Do a GET call to the specified resource
+            get("http://jsonplaceholder.typicode.com/users/1").  // Do a GET call to the specified resource
         then().
-            assertThat().                                         // Assert that the value of the element 'country'
-            body("country", equalTo("United States"));  // in the response body equals 'United States'
+            assertThat().                                           // Assert that the value of the element 'name'
+            body("name", equalTo("Leanne Graham"));       // in the response body equals 'Leanne Graham'
     }
 
     @Test
-    public void checkResponseHeaders() {
+    public void logAllRequestData() {
+
+        given().
+            log().all().
+        when().
+            get("http://jsonplaceholder.typicode.com/users/1").
+        then().
+            assertThat().
+            body("name", equalTo("Leanne Graham"));
+    }
+
+    @Test
+    public void logAllResponseData() {
 
         given().
         when().
-            get("http://api.zippopotam.us/us/90210").
+            get("http://jsonplaceholder.typicode.com/users/1").
+        then().
+            log().all().
+        and().
+            assertThat().
+            body("name", equalTo("Leanne Graham"));
+    }
+
+
+    @Test
+    public void getUserData_verifyStatusCodeAndContentType() {
+
+        given().
+        when().
+            get("http://jsonplaceholder.typicode.com/users/1").
         then().
             assertThat().
             statusCode(200).
@@ -97,28 +105,26 @@ public class RestAssuredExamples {
     public void usePathParameter() {
 
         given().
-            pathParam("countryCode","us").
-            pathParam("zipCode", "90210").
+            pathParam("userId",1).
         when().
-            get("http://api.zippopotam.us/{countryCode}/{zipCode}").
+            get("http://jsonplaceholder.typicode.com/users/{userId}").
         then().
             assertThat().
-            body("country", equalTo("UnitedStates"));
+            body("name", equalTo("Leanne Graham"));
     }
 
     @Test
-    @UseDataProvider("zipCodeData")
-    public void checkCountryForCountryCodeAndZipCode
-        (String countryCode, String zipCode, String expectedCountry) {
+    @UseDataProvider("userData")
+    public void checkNameForUser
+        (int userId, String expectedUserName) {
 
         given().
-            pathParam("countryCode", countryCode).
-            pathParam("zipCode", zipCode).
+            pathParam("userId", userId).
         when().
-            get("http://api.zippopotam.us/{countryCode}/{zipCode}").
+            get("http://jsonplaceholder.typicode.com/users/{userId}").
         then().
             assertThat().
-            body("country",equalTo(expectedCountry));
+            body("name",equalTo(expectedUserName));
     }
 
     @Test
@@ -149,14 +155,24 @@ public class RestAssuredExamples {
     }
 
     @Test
-    public void checkResponseTimeForApiCall() {
+    public void captureAndReuseUserId() {
+
+        String userId =
+
+            given().
+            when().
+                post("http://my.user.api/user").
+            then().
+                extract().
+                path("id");
 
         given().
+            pathParam("userId", userId).
         when().
-            get("http://api.zippopotam.us/us/90210").
+            get("http://my.user.api/user/{userId}").
         then().
             assertThat().
-            time(lessThan(100L), TimeUnit.MILLISECONDS);
+            statusCode(200);
     }
 
     private static ResponseSpecification responseSpec;
@@ -176,11 +192,11 @@ public class RestAssuredExamples {
 
         given().
         when().
-            get("http://api.zippopotam.us/us/90210").
+            get("http://jsonplaceholder.typicode.com/users/1").
         then().
             spec(responseSpec).
         and().
-            body("country", equalTo("United States"));
+            body("name", equalTo("Leanne Graham"));
     }
 
     private static RequestSpecification requestSpec;
@@ -191,6 +207,7 @@ public class RestAssuredExamples {
         requestSpec =
             new RequestSpecBuilder().
                 setBaseUri("http://api.zippopotam.us").
+                setPort(9876).
                 build();
     }
 

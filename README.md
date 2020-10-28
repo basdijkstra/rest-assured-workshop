@@ -4,7 +4,7 @@ For those of you looking to gain some experience working with [REST Assured](htt
 
 What do I need?
 ---
-A Java 8 JDK and Maven. That's it.
+A Java 8 JDK, Maven and an IDE of your choice. That's it.
 
 What API is used for the exercises?
 ---
