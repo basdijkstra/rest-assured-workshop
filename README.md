@@ -14,6 +14,14 @@ Running the mock server
 ---
 The mock server used to respond to the API calls you're making in the exercises is started and stopped automatically using a JUnit @Rule.
 
+
+Running the tests using Maven
+---
+
+```bash
+mvn clean compile test
+```
+
 Slides
 ---
 The .pptx/.pdf/.odp file in the root folder contains all slides from the workshop. Again, feel free to use, share and adapt them to fit your own requirements.

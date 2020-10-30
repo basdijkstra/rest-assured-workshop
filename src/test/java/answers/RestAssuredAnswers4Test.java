@@ -1,15 +1,15 @@
-package exercises;
+package answers;
+
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import org.junit.*;
 
-import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.*;
-
-public class RestAssuredExercises4 {
+public class RestAssuredAnswers4Test {
 
 	private static RequestSpecification requestSpec;
 
@@ -24,7 +24,7 @@ public class RestAssuredExercises4 {
 			setPort(9876).
 			build();
 	}
-
+		
 	/*******************************************************
 	 * Perform a GET request to /xml/de/24848 to get the
 	 * list of places associated with German zip code 24848
@@ -35,16 +35,19 @@ public class RestAssuredExercises4 {
 	 * Use "response.places.place[2].placeName" as the GPath
 	 * expression to extract the required value from the response
 	 ******************************************************/
-
+	
 	@Test
 	public void getDeZipCode24848_checkThirdPlaceInList_expectKropp() {
-
+		
 		given().
 			spec(requestSpec).
 		when().
-		then();
+			get("/xml/de/24848").
+		then().
+			assertThat().
+			body("response.places.place[2].placeName", equalTo("Kropp"));
 	}
-
+	
 	/*******************************************************
 	 * Perform a GET request to /xml/de/24848 to get the
 	 * list of places associated with German zip code 24848
@@ -63,7 +66,10 @@ public class RestAssuredExercises4 {
 		given().
 			spec(requestSpec).
 		when().
-		then();
+			get("/xml/de/24848").
+		then().
+			assertThat().
+			body("response.places.place[1].@latitude", equalTo("54.45"));
 	}
 
 	/*******************************************************
@@ -77,14 +83,17 @@ public class RestAssuredExercises4 {
 	 * Can you create the correct GPath expression yourself,
 	 * using the examples as shown in the slides?
 	 ******************************************************/
-
+	
 	@Test
 	public void getDeZipCode24848_checkNumberOfPlacesInSH_expect4() {
-
+		
 		given().
 			spec(requestSpec).
 		when().
-		then();
+			get("/xml/de/24848").
+		then().
+			assertThat().
+			body("response.places.place.findAll{it.stateAbbreviation=='SH'}", hasSize(4));
 	}
 
 
@@ -99,13 +108,16 @@ public class RestAssuredExercises4 {
 	 * Can you create the correct GPath expression yourself,
 	 * using the examples as shown in the slides?
 	 ******************************************************/
-
+	
 	@Test
 	public void getDeZipCode24848_checkNumberOfPlacesStartingWithKlein_expect2() {
-
+		
 		given().
 			spec(requestSpec).
 		when().
-		then();
+			get("/xml/de/24848").
+		then().
+			assertThat().
+			body("response.places.place.placeName.grep(~/Klein.*/)", hasSize(2));
 	}
 }

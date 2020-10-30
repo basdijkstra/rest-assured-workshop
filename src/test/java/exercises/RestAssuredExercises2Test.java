@@ -12,7 +12,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 @RunWith(DataProviderRunner.class)
-public class RestAssuredExercises2 {
+public class RestAssuredExercises2Test {
 
 	private static RequestSpecification requestSpec;
 

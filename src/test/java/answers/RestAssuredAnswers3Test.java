@@ -11,7 +11,7 @@ import io.restassured.specification.*;
 
 import org.junit.*;
 
-public class RestAssuredAnswers3 {
+public class RestAssuredAnswers3Test {
 
 	private static RequestSpecification requestSpec;
 

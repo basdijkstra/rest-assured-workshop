@@ -15,7 +15,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 @RunWith(DataProviderRunner.class)
-public class RestAssuredExamples {
+public class RestAssuredExamplesTest {
 
     @Test
     public void usePreviouslyStoredAuthToken() {
