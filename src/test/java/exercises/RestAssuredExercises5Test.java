@@ -1,4 +1,4 @@
-package answers;
+package exercises;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import dataentities.Car;
@@ -10,7 +10,7 @@ import org.junit.*;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static io.restassured.RestAssured.given;
 
-public class RestAssuredAnswers5 {
+public class RestAssuredExercises5Test {
 
 	private static RequestSpecification requestSpec;
 
@@ -26,7 +26,7 @@ public class RestAssuredAnswers5 {
 			setContentType(ContentType.JSON).
 			build();
 	}
-		
+
 	/*******************************************************
 	 * Create a new Car object that represents a 2012 Ford Focus
 	 * by passing these values to the POJO constructor
@@ -36,21 +36,17 @@ public class RestAssuredAnswers5 {
 	 * Verify that the response HTTP status code is equal to 200
 	 * (note that this will only work if you use these exact values!)
 	 ******************************************************/
-	
+
 	@Test
 	public void postCarObject_checkResponseHttpStatusCode_expect200() {
 
-		Car myCar = new Car("Ford", "Focus", 2012);
+		// Create an instance of the Car object first using
+
 
 		given().
 			spec(requestSpec).
-		and().
-			body(myCar).
 		when().
-			post("/car/postcar").
-		then().
-			assertThat().
-			statusCode(200);
+		then();
 	}
 
 	/*******************************************************
@@ -68,12 +64,13 @@ public class RestAssuredAnswers5 {
 	@Test
 	public void getCarObject_checkModelYear_expect2016() {
 
-		Car myCar = given().
-			spec(requestSpec).
-			when().
-			get("/car/getcar/alfaromeogiulia").
-			as(Car.class);
+		// Deserialize the response to a car object first
+		// Use Car myCar = given(). ...
 
-		Assert.assertEquals(2016, myCar.getModelYear());
+		given().
+			when();
+
+		// Then, write a JUnit assertion to verify the modelYear
+		// using Assert.assertEquals(<expected>, <actual>)
 	}
 }

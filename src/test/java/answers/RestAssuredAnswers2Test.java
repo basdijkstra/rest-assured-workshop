@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 import com.tngtech.java.junit.dataprovider.*;
 
 @RunWith(DataProviderRunner.class)
-public class RestAssuredAnswers2 {
+public class RestAssuredAnswers2Test {
 
 	private static RequestSpecification requestSpec;
 

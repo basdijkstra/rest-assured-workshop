@@ -9,7 +9,7 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.*;
 import org.junit.*;
 
-public class RestAssuredAnswers1 {
+public class RestAssuredAnswers1Test {
 
 	private static RequestSpecification requestSpec;
 

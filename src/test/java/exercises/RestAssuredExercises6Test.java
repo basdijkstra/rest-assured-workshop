@@ -1,7 +1,6 @@
-package answers;
+package exercises;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import dataentities.Car;
 import dataentities.Photo;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
@@ -11,14 +10,12 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.request;
 
-public class RestAssuredAnswers6 {
+public class RestAssuredExercises6Test {
 
 	private static RequestSpecification requestSpec;
 
@@ -29,9 +26,7 @@ public class RestAssuredAnswers6 {
 	public static void createRequestSpecification() {
 
 		requestSpec = new RequestSpecBuilder().
-			setBaseUri("http://localhost").
-			setPort(9876).
-			setContentType(ContentType.JSON).
+			setBaseUri("https://jsonplaceholder.typicode.com/").
 			build();
 	}
 
@@ -47,20 +42,13 @@ public class RestAssuredAnswers6 {
 		 * Store the user id in a variable of type int
 		 ******************************************************/
 
-		int userId = given().
-				spec(requestSpec).
-			when().
-				get("/users").
-			then().
-				extract().
-				path("find{it.username=='Karianne'}.id");
+		int userId;
 
 		/*******************************************************
 		 * Use a JUnit assertEquals to verify that the userId
 		 * is equal to 4
 		 ******************************************************/
 
-		Assert.assertEquals(4, userId);
 
 		/*******************************************************
 		 * Perform a GET to /albums and extract all albums that
@@ -71,20 +59,13 @@ public class RestAssuredAnswers6 {
 		 * Store these in a variable of type List<Integer>.
 		 ******************************************************/
 
-		List<Integer> albumIds = given().
-				spec(requestSpec).
-			when().
-				get("/albums").
-			then().
-				extract().
-				path(String.format("findAll{it.userId==%d}.id", userId));
+		List<Integer> albumIds;
 
 		/*******************************************************
 		 * Use a JUnit assertEquals to verify that the list has
 		 * exactly 10 items (hint: use the size() method)
 		 ******************************************************/
 
-		Assert.assertEquals(10, albumIds.size());
 
 		/*******************************************************
 		 * Perform a GET to /albums/XYZ/photos, where XYZ is the
@@ -99,11 +80,7 @@ public class RestAssuredAnswers6 {
 		 * (the accepted answer should help you solve this one).
 		 ******************************************************/
 
-		List<Photo> photos = Arrays.asList(given().
-				spec(requestSpec).
-				pathParam("albumId", albumIds.get(4)).
-			when().
-				get("/albums/{albumId}/photos").as(Photo[].class));
+		List<Photo> photos;
 
 		/*******************************************************
 		 * Use a JUnit assertEquals to verify that the title of
@@ -113,6 +90,5 @@ public class RestAssuredAnswers6 {
 		 * specific index from a List
 		 ******************************************************/
 
-		Assert.assertEquals("pariatur sunt eveniet", photos.get(31).getTitle());
 	}
 }

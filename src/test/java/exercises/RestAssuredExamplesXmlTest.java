@@ -5,7 +5,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 @Ignore
-public class RestAssuredExamplesXml {
+public class RestAssuredExamplesXmlTest {
 
     @Test
     public void checkCountryForFirstCar() {
