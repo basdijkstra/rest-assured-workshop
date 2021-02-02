@@ -30,15 +30,6 @@ public class RestAssuredExamplesTest {
             statusCode(200);
     }
 
-    @DataProvider
-    public static Object[][] userData() {
-        return new Object[][] {
-                { 1, "Leanne Graham" },
-                { 2, "Ervin Howell" },
-                { 3, "Clementine Bauch"}
-        };
-    }
-
     @Test
     public void getUserData_verifyName_shouldBeLeanneGraham() {
 
@@ -114,7 +105,11 @@ public class RestAssuredExamplesTest {
     }
 
     @Test
-    @UseDataProvider("userData")
+    @DataProvider({
+            "1, Leanne Graham",
+            "2, Ervin Howell",
+            "3, Clementine Bauch"
+    })
     public void checkNameForUser
         (int userId, String expectedUserName) {
 

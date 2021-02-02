@@ -36,18 +36,7 @@ public class RestAssuredAnswers2Test {
 	 * us           | 90210    | California
 	 * us           | 12345    | New York
 	 * ca           | Y1A      | Yukon
-	 ******************************************************/
-	
-	@DataProvider
-	public static Object[][] zipCodeData() {
-		return new Object[][] {
-				{ "us", "90210", "California" },
-				{ "us", "12345", "New York" },
-				{ "ca", "Y1A", "Yukon" }
-		};
-	}
-	
-	/*******************************************************
+	 *
 	 * Request zip code data for the given country / zip
 	 * combinations by sending a GET to /<countryCode>/<zipCode>.
 	 *
@@ -60,7 +49,11 @@ public class RestAssuredAnswers2Test {
 	 ******************************************************/
 	
 	@Test
-	@UseDataProvider("zipCodeData")
+	@DataProvider({
+			"us, 90210, California",
+			"us, 12345, New York",
+			"ca, Y1A, Yukon"
+	})
 	public void checkStateForCountryCodeAndZipCode(String countryCode, String zipCode, String expectedState) {
 		
 		given().

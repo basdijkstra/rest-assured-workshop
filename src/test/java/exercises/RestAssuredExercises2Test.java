@@ -36,11 +36,7 @@ public class RestAssuredExercises2Test {
 	 * us           | 90210    | California
 	 * us           | 12345    | New York
 	 * ca           | Y1A      | Yukon
-	 ******************************************************/
-
-
-
-	/*******************************************************
+	 *
 	 * Request zip code data for the given country / zip
 	 * combinations by sending a GET to /<countryCode>/<zipCode>.
 	 *
