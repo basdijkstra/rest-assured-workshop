@@ -8,14 +8,14 @@
     <version>1.0-SNAPSHOT</version>
     <description>An open source workshop on using REST Assured to write checks for RESTful web services</description>
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <restassured.version>4.3.1</restassured.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <restassured.version>4.4.0</restassured.version>
         <junit.version>4.13.1</junit.version>
         <junit.dataprovider.version>2.6</junit.dataprovider.version>
         <jackson.databind.version>2.11.3</jackson.databind.version>
-        <wiremock.version>2.27.2</wiremock.version>
-        <slf4j.version>1.7.30</slf4j.version>
+        <wiremock.version>2.32.0</wiremock.version>
+        <slf4j.version>1.7.32</slf4j.version>
     </properties>
     <dependencies>
         <dependency>
