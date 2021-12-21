@@ -1,20 +1,18 @@
-package exercises;
+package examples;
 
-import com.tngtech.java.junit.dataprovider.*;
 import dataentities.Address;
-import io.restassured.authentication.BasicAuthScheme;
 import io.restassured.builder.*;
 import io.restassured.http.*;
 import io.restassured.specification.*;
-import org.junit.*;
-import org.junit.runner.RunWith;
-
-import java.util.concurrent.TimeUnit;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(DataProviderRunner.class)
 public class RestAssuredExamplesTest {
 
     @Test
@@ -104,8 +102,8 @@ public class RestAssuredExamplesTest {
             body("name", equalTo("Leanne Graham"));
     }
 
-    @Test
-    @DataProvider({
+    @ParameterizedTest
+    @CsvSource({
             "1, Leanne Graham",
             "2, Ervin Howell",
             "3, Clementine Bauch"
@@ -172,7 +170,7 @@ public class RestAssuredExamplesTest {
 
     private static ResponseSpecification responseSpec;
 
-    @BeforeClass
+    @BeforeEach
     public static void createResponseSpec() {
 
         responseSpec =
@@ -196,7 +194,7 @@ public class RestAssuredExamplesTest {
 
     private static RequestSpecification requestSpec;
 
-    @BeforeClass
+    @BeforeEach
     public static void createRequestSpec() {
 
         requestSpec =
@@ -242,6 +240,6 @@ public class RestAssuredExamplesTest {
                 get("http://localhost:9876/address").
                 as(Address.class);
 
-        Assert.assertEquals("Amsterdam", myAddress.getCity());
+        assertEquals("Amsterdam", myAddress.getCity());
     }
 }

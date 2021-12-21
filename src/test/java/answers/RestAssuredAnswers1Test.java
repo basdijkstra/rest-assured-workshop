@@ -1,23 +1,21 @@
 package answers;
 
-import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.*;
-import org.junit.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+@WireMockTest(httpPort = 9876)
 public class RestAssuredAnswers1Test {
 
 	private static RequestSpecification requestSpec;
 
-	@Rule
-	public WireMockRule wireMockRule = new WireMockRule(options().port(9876));
-	
-	@BeforeClass
-	public static void createRequestSpecification() {
+	@BeforeEach
+	public void createRequestSpecification() {
 		
 		requestSpec = new RequestSpecBuilder().
 			setBaseUri("http://localhost").
