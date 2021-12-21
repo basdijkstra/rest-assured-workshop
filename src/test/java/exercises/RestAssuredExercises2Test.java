@@ -14,7 +14,7 @@ import static org.hamcrest.Matchers.equalTo;
 @WireMockTest(httpPort = 9876)
 public class RestAssuredExercises2Test {
 
-    private static RequestSpecification requestSpec;
+    private RequestSpecification requestSpec;
 
     @BeforeEach
     public void createRequestSpecification() {

@@ -1,6 +1,5 @@
 package answers;
 
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import dataentities.Car;
 import io.restassured.builder.RequestSpecBuilder;
@@ -15,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @WireMockTest(httpPort = 9876)
 public class RestAssuredAnswers5Test {
 
-    private static RequestSpecification requestSpec;
+    private RequestSpecification requestSpec;
 
     @BeforeEach
     public void createRequestSpecification() {

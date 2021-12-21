@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @WireMockTest(httpPort = 9876)
 public class RestAssuredExercises5Test {
 
-    private static RequestSpecification requestSpec;
+    private RequestSpecification requestSpec;
 
     @BeforeEach
     public void createRequestSpecification() {

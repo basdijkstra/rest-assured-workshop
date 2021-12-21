@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 @WireMockTest(httpPort = 9876)
 public class RestAssuredExercises4Test {
 
-    private static RequestSpecification requestSpec;
+    private RequestSpecification requestSpec;
 
     @BeforeEach
     public void createRequestSpecification() {

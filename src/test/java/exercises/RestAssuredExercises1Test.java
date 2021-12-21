@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.*;
 @WireMockTest(httpPort = 9876)
 public class RestAssuredExercises1Test {
 
-	private static RequestSpecification requestSpec;
+	private RequestSpecification requestSpec;
 
 	@BeforeEach
 	public void createRequestSpecification() {
