@@ -42,26 +42,15 @@ public class RestAssuredExamplesGraphQLTest {
             body("data.getCityByName.weather.summary.title", equalTo("Clear"));
     }
 
+    private String queryString = "";
+
     @ParameterizedTest
     @CsvSource({
-            "Amsterdam, Clear",
-            "Berlin, Clouds",
-            "Rome, Clouds"
+            "Amsterdam, Clouds",
+            "Berlin, Clear",
+            "Rome, Clear"
     })
     public void useJSONObjectInQuery_checkTheWeather(String cityName, String expectedWeather) {
-
-        String queryString = """
-                query getWeatherFor($name: String!)
-                {
-                  getCityByName(name: $name) {
-                    weather {
-                      summary {
-                        title
-                      }
-                    }
-                  }
-                }
-                """;
 
         GraphQLQuery query = new GraphQLQuery();
         query.setQuery(queryString);

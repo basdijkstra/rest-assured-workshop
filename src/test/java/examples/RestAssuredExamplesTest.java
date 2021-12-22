@@ -168,10 +168,10 @@ public class RestAssuredExamplesTest {
             statusCode(200);
     }
 
-    private static ResponseSpecification responseSpec;
+    private ResponseSpecification responseSpec;
 
     @BeforeEach
-    public static void createResponseSpec() {
+    public void createResponseSpec() {
 
         responseSpec =
             new ResponseSpecBuilder().
@@ -192,10 +192,10 @@ public class RestAssuredExamplesTest {
             body("name", equalTo("Leanne Graham"));
     }
 
-    private static RequestSpecification requestSpec;
+    private RequestSpecification requestSpec;
 
     @BeforeEach
-    public static void createRequestSpec() {
+    public void createRequestSpec() {
 
         requestSpec =
             new RequestSpecBuilder().
