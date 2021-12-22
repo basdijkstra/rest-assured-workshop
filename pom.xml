@@ -13,6 +13,7 @@
         <restassured.version>4.4.0</restassured.version>
         <junit.version>5.8.2</junit.version>
         <jackson.databind.version>2.13.0</jackson.databind.version>
+        <json.version>20210307</json.version>
         <wiremock.version>2.32.0</wiremock.version>
         <slf4j.version>1.7.32</slf4j.version>
         <maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
@@ -40,6 +41,12 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.databind.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${json.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
