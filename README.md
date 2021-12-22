@@ -4,15 +4,15 @@ For those of you looking to gain some experience working with [REST Assured](htt
 
 What do I need?
 ---
-A Java 8 JDK, Maven and an IDE of your choice. That's it.
+A Java 17 JDK, Maven and an IDE of your choice. That's it.
 
 What API is used for the exercises?
 ---
-All API calls that are used in the examples and exercises have been mocked using [WireMock](http://wiremock.org/). The standalone version of WireMock is included in this project, so there's no need for additional setup.
+All API calls that are used in the examples and exercises have been mocked using [WireMock](http://wiremock.org/). WireMock is included in this project as a dependency, so there's no need for additional setup.
 
 Running the mock server
 ---
-The mock server used to respond to the API calls you're making in the exercises is started and stopped automatically using a JUnit @Rule.
+The mock server used to respond to the API calls you're making in the exercises is started and stopped automatically using the `@WireMockTest` annotation.
 
 
 Running the tests using Maven
