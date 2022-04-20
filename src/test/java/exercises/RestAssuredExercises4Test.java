@@ -30,7 +30,7 @@ public class RestAssuredExercises4Test {
      *
      * Assert that the third place in the list is Kropp
      *
-     * Use "response.places.place[2].placeName" as the GPath
+     * Use "response.places.place[2].placeName" as the XmlPath
      * expression to extract the required value from the response
      ******************************************************/
 
@@ -51,7 +51,7 @@ public class RestAssuredExercises4Test {
      * Assert that the latitude for the second
      * place in the list is equal to 54.45
      *
-     * Can you create the correct GPath expression yourself,
+     * Can you create the correct XmlPath expression yourself,
      * using the examples as shown in the slides?
      ******************************************************/
 
@@ -72,7 +72,7 @@ public class RestAssuredExercises4Test {
      * Assert that there are 4 places that
      * have a stateAbbreviation that equals 'SH'
      *
-     * Can you create the correct GPath expression yourself,
+     * Can you create the correct XmlPath expression yourself,
      * using the examples as shown in the slides?
      ******************************************************/
 
@@ -94,7 +94,7 @@ public class RestAssuredExercises4Test {
      * Assert that there are 2 places that have a name that
      * starts with 'Klein'
      *
-     * Can you create the correct GPath expression yourself,
+     * Can you create the correct XmlPath expression yourself,
      * using the examples as shown in the slides?
      ******************************************************/
 
