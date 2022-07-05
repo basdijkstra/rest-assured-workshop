@@ -1,0 +1,29 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/customer/12212/accounts"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": {
+            "accounts": [
+                {
+                    "id": 12345,
+                    "type": "checking",
+                    "balance": "1234.56"
+                },
+                {
+                    "id": 54321,
+                    "type": "checking",
+                    "balance": "98.76"
+                },
+                {
+                    "id": 98765,
+                    "type": "savings",
+                    "balance": "10123.00"
+                }
+            ]
+        }
+    }
+}

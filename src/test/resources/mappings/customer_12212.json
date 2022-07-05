@@ -1,0 +1,23 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/customer/12212"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": {
+            "id": 12212,
+            "firstName": "John",
+            "lastName": "Smith",
+            "address": {
+                "street": "1431 Main St",
+                "city": "Beverly Hills",
+                "state": "CA",
+                "zipCode": "90210"
+            },
+            "phoneNumber": "310-447-4121",
+            "ssn": "622-11-9999"
+        }
+    }
+}

@@ -1,13 +1,13 @@
 package exercises;
 
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.*;
 
 @WireMockTest(httpPort = 9876)
 public class RestAssuredExercises1Test {
@@ -16,85 +16,85 @@ public class RestAssuredExercises1Test {
 
 	@BeforeEach
 	public void createRequestSpecification() {
-		
+
 		requestSpec = new RequestSpecBuilder().
-			setBaseUri("http://localhost").
-			setPort(9876).
-			build();
+				setBaseUri("http://localhost").
+				setPort(9876).
+				build();
 	}
-	
+
 	/*******************************************************
-	 * Send a GET request to /us/90210
+	 * Send a GET request to /customer/12212
 	 * and check that the response has HTTP status code 200
 	 ******************************************************/
-	
+
 	@Test
-	public void requestUsZipCode90210_checkResponseCode_expect200() {
-				
+	public void requestDataForCustomer12212_checkResponseCode_expect200() {
+
 		given().
 			spec(requestSpec).
 		when().
 		then();
 	}
-	
+
 	/*******************************************************
-	 * Send a GET request to /us/99999
+	 * Send a GET request to /customer/99999
 	 * and check that the answer has HTTP status code 404
 	 ******************************************************/
-	
+
 	@Test
-	public void requestUsZipCode99999_checkResponseCode_expect404() {
-				
+	public void requestDataForCustomer99999_checkResponseCode_expect404() {
+
 		given().
 			spec(requestSpec).
 		when().
 		then();
 	}
-	
+
 	/*******************************************************
-	 * Send a GET request to /us/90210
-	 * and check that the response is in JSON format 
+	 * Send a GET request to /customer/12212
+	 * and check that the response is in JSON format
 	 ******************************************************/
-	
+
 	@Test
-	public void requestUsZipCode90210_checkContentType_expectApplicationJson() {
-				
+	public void requestDataForCustomer12212_checkContentType_expectApplicationJson() {
+
 		given().
 			spec(requestSpec).
 		when().
 		then();
 	}
-	
+
 	/***********************************************
-	 * Send a GET request to /us/90210 and check
-	 * that the state associated with the first place
-	 * in the list returned is equal to 'California'
+	 * Send a GET request to /customer/12212 and check
+	 * that the first name of the person associated with
+	 * this customer ID is 'John'.
 	 *
-	 * Use the GPath expression "places[0].state" to
+	 * Use the GPath expression "firstName" to
 	 * extract the required response body element
 	 **********************************************/
-	
+
 	@Test
-	public void requestUsZipCode90210_checkStateForFirstPlace_expectCalifornia() {
-				
+	public void requestDataForCustomer12212_checkFirstName_expectJohn() {
+
 		given().
 			spec(requestSpec).
 		when().
 		then();
 	}
-	
+
 	/***********************************************
-	 * Send a GET request to /de/24848 and check that
-	 * the list of place names returned contains the
-	 * value 'Kropp'
+	 * Send a GET request to /customer/12212 and check
+	 * that the city where the person associated with
+	 * this customer ID is living is 'Beverly Hills'.
 	 *
-	 * Use the GPath expression "places.'place name'" to
-	 * extract the required response body elements
+	 * Use the GPath expression "address.city" to
+	 * extract the required response body element
 	 **********************************************/
-	
+
 	@Test
-	public void requestDeZipCode24848_checkListOfPlaceNames_expectContainsKropp() {
-		
+	public void requestDataForCustomer12212_checkAddressCity_expectBeverlyHills() {
+
 		given().
 			spec(requestSpec).
 		when().
@@ -102,17 +102,17 @@ public class RestAssuredExercises1Test {
 	}
 
 	/***********************************************
-	 * Send a GET request to /de/24848 and check that
-	 * the list of place names returned does not
-	 * contain the value 'Frankfurt'
+	 * Send a GET request to /customer/12212/accounts
+	 * and check that the list of accounts returned
+	 * includes an account with ID 12345
 	 *
-	 * Use the GPath expression "places.'place name'" to
+	 * Use the GPath expression "accounts.id" to
 	 * extract the required response body elements
 	 **********************************************/
-	
+
 	@Test
-	public void requestDeZipCode24848_checkListOfPlaceNames_expectDoesNotContainFrankfurt() {
-		
+	public void requestAccountsForCustomer12212_checkListOfAccountsIDs_expectContains12345() {
+
 		given().
 			spec(requestSpec).
 		when().
@@ -120,16 +120,34 @@ public class RestAssuredExercises1Test {
 	}
 
 	/***********************************************
-	 * Send a GET request to /de/24848 and check that
-	 * the list of place names returned is a
-	 * collection of size 4
-	 * 
-	 * Use the GPath expression "places.'place name'" to
+	 * Send a GET request to /customer/12212/accounts
+	 * and check that the list of accounts returned
+	 * does not include an account with ID 99999
+	 *
+	 * Use the GPath expression "accounts.id" to
 	 * extract the required response body elements
 	 **********************************************/
 
 	@Test
-	public void requestDeZipCode24848_checkNumberOfPlaceNames_expect4() {
+	public void requestAccountsForCustomer12212_checkListOfAccountsIDs_expectDoesNotContain99999() {
+
+		given().
+			spec(requestSpec).
+		when().
+		then();
+	}
+
+	/***********************************************
+	 * Send a GET request to /customer/12212/accounts
+	 * and check that the list of account IDs returned
+	 * is a collection of size 3
+	 *
+	 * Use the GPath expression "accounts.id" to
+	 * extract the required response body elements
+	 **********************************************/
+
+	@Test
+	public void requestAccountsForCustomer12212_checkListOfAccountsIDs_expectSize3() {
 
 		given().
 			spec(requestSpec).
