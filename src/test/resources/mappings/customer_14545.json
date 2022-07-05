@@ -1,0 +1,23 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/customer/14545"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": {
+            "id": 12212,
+            "firstName": "Anna",
+            "lastName": "Grant",
+            "address": {
+                "street": "456 High St",
+                "city": "Young America",
+                "state": "MN",
+                "zipCode": "55555"
+            },
+            "phoneNumber": "310-447-4121",
+            "ssn": "622-11-7777"
+        }
+    }
+}

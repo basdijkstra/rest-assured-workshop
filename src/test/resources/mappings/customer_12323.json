@@ -1,0 +1,23 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/customer/12323"
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": {
+            "id": 12212,
+            "firstName": "Susan",
+            "lastName": "Holmes",
+            "address": {
+                "street": "987 Green St",
+                "city": "Schenectady",
+                "state": "NY",
+                "zipCode": "12345"
+            },
+            "phoneNumber": "310-447-4121",
+            "ssn": "622-11-8888"
+        }
+    }
+}

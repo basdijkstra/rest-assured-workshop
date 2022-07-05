@@ -25,43 +25,46 @@ public class RestAssuredAnswers2Test {
     }
 
     /*******************************************************
-     * Transform this Test into a ParameterizedTest, using
-     * a CsvSource data source with three test data rows:
+     * Transform these tests into a single ParameterizedTest,
+     * using a CsvSource data source with three test data rows:
      * ------------------------------------
-     * country code | zip code | state
+     * customer ID | first name | last name
      * ------------------------------------
-     * us           | 90210    | California
-     * us           | 12345    | New York
-     * ca           | Y1A      | Yukon
+     * 12212       | John       | Smith
+     * 12323       | Susan      | Holmes
+     * 14545       | Anna       | Grant
      *
-     * Request zip code data for the given country / zip
-     * combinations by sending a GET to /<countryCode>/<zipCode>.
+     * Request user data for the given user IDs by sending
+     * an HTTP GET to /customer/<customerID>.
      *
      * Use the test data collection created
-     * above. Check that the state returned by the API
-     * matches the expected value.
+     * above. Check that both the first name and the last name
+     * for each of the customer IDs matches the expected values
+     * listed in the table above
      *
-     * Use the GPath expression "places[0].state" to
-     * extract the required response body element
+     * Use the GPath expressions "firstName" and "lastName",
+     * respectively, to extract the required response body elements
      ******************************************************/
 
     @ParameterizedTest
     @CsvSource({
-            "us, 90210, California",
-            "us, 12345, New York",
-            "ca, Y1A, Yukon"
+            "12212, John, Smith",
+            "12323, Susan, Holmes",
+            "14545, Anna, Grant"
     })
-    public void checkStateForCountryCodeAndZipCode(String countryCode, String zipCode, String expectedState) {
+    public void checkFirstNameAndLastNameForCustomerIDs(
+            int customerId, String expectedFirstName, String expectedLastName
+    ) {
 
         given().
             spec(requestSpec).
         and().
-            pathParam("countryCode", countryCode).
-            pathParam("zipCode", zipCode).
+            pathParam("customerId", customerId).
         when().
-            get("/{countryCode}/{zipCode}").
+            get("/customer/{customerId}").
         then().
             assertThat().
-            body("places[0].state",equalTo(expectedState));
+            body("firstName", equalTo(expectedFirstName)).
+            body("lastName", equalTo(expectedLastName));
     }
 }
