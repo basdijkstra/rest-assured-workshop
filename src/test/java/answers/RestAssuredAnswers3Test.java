@@ -1,12 +1,9 @@
 package answers;
 
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.restassured.builder.*;
-import io.restassured.http.ContentType;
 import io.restassured.specification.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,72 +23,43 @@ public class RestAssuredAnswers3Test {
     }
 
     /*******************************************************
-     * Create a static ResponseSpecification that checks whether:
-     * - the response has statusCode 200
-     * - the response contentType is JSON
-     * - the value of 'country' in the response body
-     *   is equal to 'United States' (use the GPath expression
-     *   "country" to extract the required element)
-     ******************************************************/
-
-    private static ResponseSpecification responseSpec;
-
-    @BeforeEach
-    public void createResponseSpecification() {
-
-        responseSpec = new ResponseSpecBuilder().
-                expectStatusCode(200).
-                expectContentType(ContentType.JSON).
-                expectBody("country", equalTo("United States")).
-                build();
-    }
-
-    /*******************************************************
-     * Perform a GET request to /us/90210
+     * Perform a GET request to /token and pass in basic
+     * authentication details with username 'john' and
+     * password 'demo'.
      *
-     * Use the previously created ResponseSpecification to
-     * execute the specified checks
+     * Extract the value of the 'token' element in the
+     * response into a String variable.
      *
-     * Additionally, check that 'country abbreviation' is
-     * equal to 'US' (use the GPath expression
-     * "'country abbreviation'" to extract the required element)
+     * Use the token to authenticate using OAuth2 when sending
+     * a GET request to /secure/customer/12212/
+     *
+     * Verify that the status code of this response is equal to HTTP 200
      ******************************************************/
 
     @Test
-    public void useResponseSpecification() {
+    public void getTokenUsingBasicAuth_extractFromResponse_thenReuseAsOAuthToken() {
+
+        String token =
+
+            given().
+                spec(requestSpec).
+                auth().
+                preemptive().
+                basic("john", "demo").
+            when().
+                get("/token").
+            then().
+                extract().
+                path("token");
 
         given().
             spec(requestSpec).
+            auth().
+            oauth2(token).
         when().
-            get("/us/90210").
+            get("/secure/customer/12212").
         then().
-            spec(responseSpec).
-        and().
-            body("'country abbreviation'",equalTo("US"));
-    }
-
-    /*******************************************************
-     * Perform a GET request to /us/90210
-     *
-     * Extract the value of the 'country' element in the
-     * response into a String variable actualCountry
-     *
-     * Use the given JUnit assertion to check on its value
-     ******************************************************/
-
-    @Test
-    public void extractCountryFromResponse() {
-
-        String actualCountry =
-
-                given().
-                    spec(requestSpec).
-                when().
-                    get("/us/90210").
-                then().
-                    extract().
-                    path("country");
-
-        assertEquals("United States", actualCountry);
+            assertThat().
+            statusCode(200);
     }
 }

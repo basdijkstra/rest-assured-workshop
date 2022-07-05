@@ -1,0 +1,18 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/token",
+        "headers": {
+            "Authorization": {
+                "equalTo": "Basic am9objpkZW1v"
+            }
+        }
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "jsonBody": {
+            "token": "c4515429-0c2e-4520-894c-fbd5e8ae5874"
+        }
+    }
+}
