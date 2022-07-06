@@ -1,11 +1,11 @@
 {
     "request": {
         "method": "GET",
-        "url": "/xml/de/24848"
+        "url": "/xml/customer/12212/accounts"
     },
     "response": {
         "status": 200,
 		"headers": { "Content-Type": "application/xml" },
-        "bodyFileName": "24848.xml"
+        "bodyFileName": "customer_12212_accounts.xml"
     }
 }
