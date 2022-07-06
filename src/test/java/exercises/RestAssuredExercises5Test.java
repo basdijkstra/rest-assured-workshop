@@ -1,13 +1,16 @@
 package exercises;
 
+import com.github.tomakehurst.wiremock.extension.responsetemplating.ResponseTemplateTransformer;
+import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
-import dataentities.Car;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
+import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,6 +18,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RestAssuredExercises5Test {
 
     private RequestSpecification requestSpec;
+
+    @RegisterExtension
+    static WireMockExtension wiremock = WireMockExtension.newInstance()
+            .options(wireMockConfig()
+                    .port(9876)
+                    .extensions(new ResponseTemplateTransformer(true)))
+            .build();
 
     @BeforeEach
     public void createRequestSpecification() {
@@ -27,19 +37,16 @@ public class RestAssuredExercises5Test {
     }
 
     /*******************************************************
-     * Create a new Car object that represents a 2012 Ford Focus
-     * by passing these values to the POJO constructor
+     * Create a new Account object with 'savings' as the account
+     * type
      *
-     * POST this object to /car/postcar
+     * POST this object to /customer/12212/accounts
      *
-     * Verify that the response HTTP status code is equal to 200
-     * (note that this will only work if you use these exact values!)
+     * Verify that the response HTTP status code is equal to 201
      ******************************************************/
 
     @Test
-    public void postCarObject_checkResponseHttpStatusCode_expect200() {
-
-        Car myCar = new Car("Ford", "Focus", 2012);
+    public void postAccountObject_checkResponseHttpStatusCode_expect201() {
 
         given().
             spec(requestSpec).
@@ -48,19 +55,40 @@ public class RestAssuredExercises5Test {
     }
 
     /*******************************************************
-     * Perform a GET to /car/getcar/alfaromeogiulia
+     * Perform an HTTP GET to /customer/12212/accounts and
+     * deserialize the response into an object of type
+     * AccountResponse
      *
-     * Store the response in a Car object using deserialization
-     *
-     * Verify, using that object, that the model year = 2016
-     *
-     * Use the standard assertEquals(expected,actual)
-     * as provided by JUnit for the assertion, and the
-     * getModelYear() method to retrieve the actual model year
+     * Using a JUnit assertEquals() method, verify that the
+     * number of account in the response (in other words,
+     * the size() of the accounts property) is equal to 3
      ******************************************************/
 
     @Test
-    public void getCarObject_checkModelYear_expect2016() {
+    public void getAccountsForCustomer12212_deserializeIntoList_checkListSize_shouldEqual3() {
+
+        given().
+            spec(requestSpec).
+        when();
+    }
+
+    /*******************************************************
+     * Create a new Customer object by using the constructor
+     * that takes a first name and last name as its parameters
+     *
+     * Use a first name and a last name of your own choosing
+     *
+     * POST this object to /customer
+     *
+     * Deserialize the response into another object of type
+     * Customer and use JUnit assertEquals() assertions to
+     * check that the first name and last name returned by
+     * the API are the same as those you passed into the
+     * constructor of the Customer method you POSTed
+     ******************************************************/
+
+    @Test
+    public void postCustomerObject_checkReturnedFirstAndLastName_expectSuppliedValues() {
 
         given().
             spec(requestSpec).

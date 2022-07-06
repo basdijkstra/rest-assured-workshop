@@ -217,20 +217,6 @@ public class RestAssuredExamplesTest {
     }
 
     @Test
-    public void serializeAddressToJson() {
-
-        Address myAddress = new Address("My street", 1, 1234, "Amsterdam");
-
-        given().
-            body(myAddress).
-        when().
-            post("http://localhost:9876/address").
-        then().
-            assertThat().
-            statusCode(200);
-    }
-
-    @Test
     public void deserializeJsonToAddress() {
 
         Address myAddress =

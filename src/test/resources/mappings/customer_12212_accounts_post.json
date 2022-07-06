@@ -1,13 +1,13 @@
 {
     "request": {
         "method": "POST",
-        "url": "/car/postcar",
+        "url": "/customer/12212/accounts",
 		"bodyPatterns":[{
-			"equalToJson": { "make": "Ford", "model": "Focus", "modelYear": 2012 }
+			"equalToJson": { "id": 87654, "type": "savings", "balance": "0" }
 		}] 
     },
     "response": {
-        "status": 200,
+        "status": 201,
 		"headers": { "Content-Type": "application/json" },
         "jsonBody": { "result": "OK" }
     }
