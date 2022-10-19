@@ -12,7 +12,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <restassured.version>5.1.1</restassured.version>
         <junit.version>5.8.2</junit.version>
-        <jackson.databind.version>2.13.3</jackson.databind.version>
+        <jackson.databind.version>2.13.4.1</jackson.databind.version>
         <json.version>20220320</json.version>
         <wiremock.version>2.33.2</wiremock.version>
         <slf4j.version>1.7.36</slf4j.version>
