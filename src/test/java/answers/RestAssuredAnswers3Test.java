@@ -31,7 +31,7 @@ public class RestAssuredAnswers3Test {
      * response into a String variable.
      *
      * Use the token to authenticate using OAuth2 when sending
-     * a GET request to /secure/customer/12212/
+     * a GET request to /secure/customer/12212
      *
      * Verify that the status code of this response is equal to HTTP 200
      ******************************************************/
