@@ -14,7 +14,6 @@ import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMoc
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@WireMockTest(httpPort = 9876)
 public class RestAssuredExercises5Test {
 
     private RequestSpecification requestSpec;
