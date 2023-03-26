@@ -238,6 +238,24 @@ public class RestAssuredExamplesTest {
             given().
             when().
                 get("http://localhost:9876/address").
+            then().
+                statusCode(200).
+            and().
+                extract().
+                body().
+                as(Address.class);
+
+        assertEquals("Amsterdam", myAddress.getCity());
+    }
+
+    @Test
+    public void deserializeJsonToAddressWithoutInitialChecks() {
+
+        Address myAddress =
+
+            given().
+            when().
+                get("http://localhost:9876/address").
                 as(Address.class);
 
         assertEquals("Amsterdam", myAddress.getCity());

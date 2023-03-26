@@ -65,7 +65,8 @@ public class RestAssuredAnswers5Test {
     /*******************************************************
      * Perform an HTTP GET to /customer/12212/accounts and
      * deserialize the response into an object of type
-     * AccountResponse
+     * AccountResponse after checking that the response
+     * status code is equal to 200.
      *
      * Using a JUnit assertEquals() method, verify that the
      * number of account in the response (in other words,
@@ -81,6 +82,11 @@ public class RestAssuredAnswers5Test {
                 spec(requestSpec).
             when().
                 get("/customer/12212/accounts").
+            then().
+                statusCode(200).
+            and().
+                extract().
+                body().
                 as(AccountResponse.class);
 
         assertEquals(3, accountResponse.getAccounts().size());
