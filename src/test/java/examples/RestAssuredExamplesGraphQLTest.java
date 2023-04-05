@@ -1,21 +1,19 @@
 package examples;
 
-import dataentities.GraphQLQuery;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 import org.json.JSONObject;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.HashMap;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 public class RestAssuredExamplesGraphQLTest {
 
-    @Test
-    public void useHardCodedValuesInQuery_checkTheWeather() {
-
-        String queryString = """
+    String queryString = """
                 {
                   getCityByName(name: "Amsterdam") {
                     weather {
@@ -27,12 +25,28 @@ public class RestAssuredExamplesGraphQLTest {
                 }
                 """;
 
-        GraphQLQuery query = new GraphQLQuery();
-        query.setQuery(queryString);
+    String parameterizedQueryString = """
+                query GetWeatherFor($name: String!)
+                {
+                  getCityByName(name: $name) {
+                    weather {
+                      summary {
+                        title
+                      }
+                    }
+                  }
+                }
+                """;
+
+    @Test
+    public void useHardCodedValuesInQuery_checkTheWeather() {
+
+        HashMap<String, Object> graphQlQuery = new HashMap<>();
+        graphQlQuery.put("query", queryString);
 
         given().
             contentType(ContentType.JSON).
-            body(query).
+            body(graphQlQuery).
         when().
             post("https://graphql-weather-api.herokuapp.com/").
         then().
@@ -42,8 +56,6 @@ public class RestAssuredExamplesGraphQLTest {
             body("data.getCityByName.weather.summary.title", equalTo("Clear"));
     }
 
-    private String queryString = "";
-
     @ParameterizedTest
     @CsvSource({
             "Amsterdam, Clouds",
@@ -52,17 +64,16 @@ public class RestAssuredExamplesGraphQLTest {
     })
     public void useJSONObjectInQuery_checkTheWeather(String cityName, String expectedWeather) {
 
-        GraphQLQuery query = new GraphQLQuery();
-        query.setQuery(queryString);
-
-        JSONObject variables = new JSONObject();
+        HashMap<String, Object> variables = new HashMap<>();
         variables.put("name", cityName);
 
-        query.setVariables(variables.toString());
+        HashMap<String, Object> graphQlQuery = new HashMap<>();
+        graphQlQuery.put("query", parameterizedQueryString);
+        graphQlQuery.put("variables", variables);
 
         given().
             contentType(ContentType.JSON).
-            body(query).
+            body(graphQlQuery).
         when().
             post("https://graphql-weather-api.herokuapp.com/").
         then().

@@ -1,12 +1,12 @@
 package answers;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
-import dataentities.GraphQLQuery;
 import io.restassured.http.ContentType;
-import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import java.util.HashMap;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
@@ -15,102 +15,110 @@ import static org.hamcrest.Matchers.*;
 public class RestAssuredAnswers6Test {
 
     /*******************************************************
-     * Create a new GraphQL query as a String with value
-     * { company { name ceo coo } }
+     * Create a new payload for a GraphQL query using a
+     * HashMap and the specified query (with hardcoded ID)
      *
-     * POST this object to https://api.spacex.land/graphql/
+     * POST this object to https://fruits-api.netlify.app/graphql
      *
-     * Assert that the name of the CEO is Elon Musk
+     * Assert that the name of the fruit is 'Manzana'
      *
-     * Use "data.company.ceo" as the GPath
+     * Use "data.fruit.fruit_name" as the GPath
      * expression to extract the required value from the response
      ******************************************************/
 
     @Test
-    public void getCompanyData_checkCeo_shouldBeElonMusk() {
+    public void getFruitData_checkFruitName_shouldBeManzana() {
 
-        String queryString = "{ company { name ceo coo } }";
+        String queryString = """
+                {
+                    fruit(id: 1) {
+                        id
+                        fruit_name
+                        tree_name
+                    }
+                }
+                """;
 
-        GraphQLQuery query = new GraphQLQuery();
-        query.setQuery(queryString);
+        HashMap<String, Object> graphQlQuery = new HashMap<>();
+        graphQlQuery.put("query", queryString);
 
         given().
             contentType(ContentType.JSON).
-            body(query).
+            body(graphQlQuery).
         when().
-            post("https://api.spacex.land/graphql/").
+            post("https://fruits-api.netlify.app/graphql").
         then().
             assertThat().
             statusCode(200).
         and().
-            body("data.company.ceo", equalTo("Elon Musk"));
+            body("data.fruit.fruit_name", equalTo("Manzana"));
     }
 
     /*******************************************************
      * Transform this Test into a ParameterizedTest, using
      * a CsvSource data source with three test data rows:
-     * ------------------------------------
-     * rocket id   | rocket name  | country
-     * ------------------------------------
-     * falcon1     | Falcon 1     | Republic of the Marshall Islands
-     * falconheavy | Falcon Heavy | United States
-     * starship    | Starship     | United States
+     * ---------------------------------
+     * fruit id | fruit name | tree name
+     * ---------------------------------
+     *        1 |    Manzana |   Manzano
+     *        2 |       Pera |     Peral
+     *        3 |     Banana |   Platano
      *
      * Parameterize the test
      *
      * Create a new GraphQL query from the given query string
-     * Pass in the rocket id as a variable value
+     * Pass in the fruit id as a variable value
      *
-     * POST this object to https://api.spacex.land/graphql/
+     * POST this object to https://fruits-api.netlify.app/graphql
      *
      * Assert that the HTTP response status code is 200
      *
-     * Assert that the name of the rocket is equal to the value in the data source
-     * Use "data.rocket.name" as the GPath
+     * Assert that the name of the fruit is equal to the value in the data source
+     * Use "data.fruit.fruit_name" as the GPath
      * expression to extract the required value from the response
      *
-     * Also, assert that the country of the rocket is equal to the value in the data source
-     * Use "data.rocket.country" as the GPath
+     * Also, assert that the tree name is equal to the value in the data source
+     * Use "data.fruit.tree_name" as the GPath
      * expression to extract the required value from the response
      ******************************************************/
 
     @ParameterizedTest
     @CsvSource({
-            "falcon1, Falcon 1, Republic of the Marshall Islands",
-            "falconheavy, Falcon Heavy, United States",
-            "starship, Starship, United States"
+            "1, Manzana, Manzano",
+            "2, Pera, Peral",
+            "3, Banana, Platano"
     })
-    public void getRocketDataById_checkNameAndCountry(String rocketId, String expectedName, String expectedCountry) {
+    public void getFruitDataById_checkFruitNameAndTreeName(int fruitId, String expectedFruitName, String expectedTreeName) {
 
         String queryString = """
-                query getRocketData($id: ID!)
+                query GetFruit($id: ID!)
                 {
-                  rocket(id: $id) {
-                    name
-                    country
-                  }
+                    fruit(id: $id) {
+                        id
+                        fruit_name
+                        tree_name
+                    }
                 }
                 """;
 
-        GraphQLQuery query = new GraphQLQuery();
-        query.setQuery(queryString);
+        HashMap<String, Object> variables = new HashMap<>();
+        variables.put("id", fruitId);
 
-        JSONObject variables = new JSONObject();
-        variables.put("id", rocketId);
-
-        query.setVariables(variables.toString());
+        HashMap<String, Object> graphqlQuery = new HashMap<>();
+        graphqlQuery.put("query", queryString);
+        graphqlQuery.put("variables", variables);
 
         given().
             contentType(ContentType.JSON).
-            body(query).
+            body(graphqlQuery).
         when().
-            post("https://api.spacex.land/graphql/").
+            post("https://fruits-api.netlify.app/graphql").
         then().
             assertThat().
             statusCode(200).
         and().
-            body("data.rocket.name", equalTo(expectedName)).
+            body("data.fruit.fruit_name", equalTo(expectedFruitName)).
         and().
-            body("data.rocket.country", equalTo(expectedCountry));
+            body("data.fruit.tree_name", equalTo(expectedTreeName));
     }
 }
