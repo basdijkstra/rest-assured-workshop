@@ -2,7 +2,6 @@ package examples;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
-import org.json.JSONObject;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 

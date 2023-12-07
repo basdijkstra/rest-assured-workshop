@@ -23,7 +23,7 @@ public class RestAssuredExercises5Test {
     static WireMockExtension wiremock = WireMockExtension.newInstance()
             .options(wireMockConfig()
                     .port(9876)
-                    .extensions(new ResponseTemplateTransformer(true)))
+                    .globalTemplating(true))
             .build();
 
     @BeforeEach
