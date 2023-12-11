@@ -1,7 +1,10 @@
 package answers;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
+import io.restassured.specification.RequestSpecification;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -14,20 +17,35 @@ import static org.hamcrest.Matchers.*;
 @WireMockTest(httpPort = 9876)
 public class RestAssuredAnswers6Test {
 
+    private RequestSpecification requestSpec;
+
+    @BeforeEach
+    public void createRequestSpecification() {
+
+        requestSpec = new RequestSpecBuilder().
+                setBaseUri("http://localhost").
+                setPort(9876).
+                setContentType(ContentType.JSON).
+                build();
+    }
+
     /*******************************************************
      * Create a new payload for a GraphQL query using a
      * HashMap and the specified query (with hardcoded ID)
      *
-     * POST this object to https://fruits-api.netlify.app/graphql
+     * POST this object to /graphql
      *
-     * Assert that the name of the fruit is 'Manzana'
-     *
+     * Assert that the name of the fruit is equal to "Apple"
      * Use "data.fruit.fruit_name" as the GPath
+     * expression to extract the required value from the response
+     *
+     * Also, assert that the tree name is equal to "Malus"
+     * Use "data.fruit.tree_name" as the GPath
      * expression to extract the required value from the response
      ******************************************************/
 
     @Test
-    public void getFruitData_checkFruitName_shouldBeManzana() {
+    public void getFruitData_checkFruitAndTreeName_shouldBeAppleAndMalus() {
 
         String queryString = """
                 {
@@ -43,15 +61,16 @@ public class RestAssuredAnswers6Test {
         graphQlQuery.put("query", queryString);
 
         given().
-            contentType(ContentType.JSON).
+            spec(requestSpec).
             body(graphQlQuery).
         when().
-            post("https://fruits-api.netlify.app/graphql").
+            post("/graphql").
         then().
             assertThat().
             statusCode(200).
         and().
-            body("data.fruit.fruit_name", equalTo("Manzana"));
+            body("data.fruit.fruit_name", equalTo("Apple")).
+            body("data.fruit.tree_name", equalTo("Malus"));
     }
 
     /*******************************************************
@@ -60,16 +79,16 @@ public class RestAssuredAnswers6Test {
      * ---------------------------------
      * fruit id | fruit name | tree name
      * ---------------------------------
-     *        1 |    Manzana |   Manzano
-     *        2 |       Pera |     Peral
-     *        3 |     Banana |   Platano
+     *        1 |      Apple |     Malus
+     *        2 |       Pear |     Pyrus
+     *        3 |     Banana |      Musa
      *
      * Parameterize the test
      *
      * Create a new GraphQL query from the given query string
      * Pass in the fruit id as a variable value
      *
-     * POST this object to https://fruits-api.netlify.app/graphql
+     * POST this object to /graphql
      *
      * Assert that the HTTP response status code is 200
      *
@@ -84,9 +103,9 @@ public class RestAssuredAnswers6Test {
 
     @ParameterizedTest
     @CsvSource({
-            "1, Manzana, Manzano",
-            "2, Pera, Peral",
-            "3, Banana, Platano"
+            "1, Apple, Malus",
+            "2, Pear, Pyrus",
+            "3, Banana, Musa"
     })
     public void getFruitDataById_checkFruitNameAndTreeName(int fruitId, String expectedFruitName, String expectedTreeName) {
 
@@ -109,10 +128,10 @@ public class RestAssuredAnswers6Test {
         graphqlQuery.put("variables", variables);
 
         given().
-            contentType(ContentType.JSON).
+            spec(requestSpec).
             body(graphqlQuery).
         when().
-            post("https://fruits-api.netlify.app/graphql").
+            post("/graphql").
         then().
             assertThat().
             statusCode(200).

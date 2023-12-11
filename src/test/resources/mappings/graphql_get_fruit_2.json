@@ -1,0 +1,16 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/graphql",
+        "bodyPatterns": [
+            {
+                "matchesJsonPath": "$.variables[?(@.id == 2)]"
+            }
+        ]
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "bodyFileName": "pear.json"
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/graphql",
+        "bodyPatterns": [
+            {
+                "contains": "fruit(id: 1)"
+            }
+        ]
+    },
+    "response": {
+        "status": 200,
+		"headers": { "Content-Type": "application/json" },
+        "bodyFileName": "apple.json"
+    }
+}

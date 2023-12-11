@@ -1,0 +1,9 @@
+{
+  "data": {
+    "fruit": {
+      "id": 2,
+      "fruit_name": "Pear",
+      "tree_name": "Pyrus"
+    }
+  }
+}
