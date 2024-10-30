@@ -4,7 +4,7 @@ For those of you looking to gain some experience working with [REST Assured](htt
 
 What do I need?
 ---
-A Java 17 JDK, Maven and an IDE of your choice. That's it.
+A Java 21 JDK, Maven and an IDE of your choice. That's it.
 
 What API is used for the exercises?
 ---
@@ -19,7 +19,7 @@ Running the tests using Maven
 ---
 
 ```bash
-mvn clean compile test
+mvn clean test
 ```
 
 Slides
