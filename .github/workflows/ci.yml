@@ -18,5 +18,7 @@ jobs:
         with:
           java-version: ${{ matrix.java-version }}
           distribution: 'temurin'
+      - name: Check active Java version
+        run: javac -version
       - name: Run tests in answers package
         run: mvn clean "-Dtest=answers.*Test" test
