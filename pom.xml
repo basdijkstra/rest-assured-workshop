@@ -8,8 +8,7 @@
     <version>1.0-SNAPSHOT</version>
     <description>An open source workshop on using REST Assured to write checks for RESTful web services</description>
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.release>17</maven.compiler.release>
         <restassured.version>5.5.0</restassured.version>
         <junit.version>5.11.2</junit.version>
         <jackson.databind.version>2.18.0</jackson.databind.version>
