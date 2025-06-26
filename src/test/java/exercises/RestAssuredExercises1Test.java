@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.*;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import io.restassured.specification.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -53,7 +54,8 @@ public class RestAssuredExercises1Test {
 
 	/*******************************************************
 	 * Send a GET request to /customer/12212
-	 * and check that the response is in JSON format
+	 * and check that the Content-Type header of the response
+	 * has value 'application/json'
 	 ******************************************************/
 
 	@Test
