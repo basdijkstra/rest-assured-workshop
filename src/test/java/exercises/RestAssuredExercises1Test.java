@@ -35,7 +35,9 @@ public class RestAssuredExercises1Test {
 		given().
 			spec(requestSpec).
 		when().
-		then();
+				get("/customer/12212").
+		then().
+				statusCode(200);
 	}
 
 	/*******************************************************
@@ -49,7 +51,8 @@ public class RestAssuredExercises1Test {
 		given().
 			spec(requestSpec).
 		when().
-		then();
+				get("/customer/99999").
+		then().statusCode(404);
 	}
 
 	/*******************************************************
@@ -82,7 +85,9 @@ public class RestAssuredExercises1Test {
 		given().
 			spec(requestSpec).
 		when().
-		then();
+				get("/customer/12212").
+		then().
+				body("firstName", equalTo("John"));
 	}
 
 	/***********************************************
@@ -100,7 +105,9 @@ public class RestAssuredExercises1Test {
 		given().
 			spec(requestSpec).
 		when().
-		then();
+				get("/customer/12212").
+		then().
+				body("address.city", equalTo("Beverly Hills"));
 	}
 
 	/***********************************************
@@ -118,7 +125,9 @@ public class RestAssuredExercises1Test {
 		given().
 			spec(requestSpec).
 		when().
-		then();
+				get("/customer/12212/accounts").
+		then().
+			body("accounts.id",hasItem(12345));
 	}
 
 	/***********************************************
@@ -136,7 +145,9 @@ public class RestAssuredExercises1Test {
 		given().
 			spec(requestSpec).
 		when().
-		then();
+				get("/customer/12212/accounts").
+		then().
+			body("accounts.id",not(hasItem("99999")));
 	}
 
 	/***********************************************
@@ -154,6 +165,8 @@ public class RestAssuredExercises1Test {
 		given().
 			spec(requestSpec).
 		when().
-		then();
+				get("/customer/12212/accounts").
+		then().
+			body("accounts.id", hasSize(3));
 	}
 }
