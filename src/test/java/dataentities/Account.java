@@ -1,10 +1,12 @@
 package dataentities;
 
+import java.math.BigDecimal;
+
 public class Account {
 
     private int id;
     private String type;
-    private String balance;
+    private double balance;
 
     public Account() {
 
@@ -13,7 +15,7 @@ public class Account {
     public Account(String type) {
         this.id = 87654;
         this.type = type;
-        this.balance = "0";
+        this.balance = 0;
     }
 
     public int getId() {
@@ -32,11 +34,11 @@ public class Account {
         this.type = type;
     }
 
-    public String getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 }

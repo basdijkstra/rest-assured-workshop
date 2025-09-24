@@ -3,7 +3,7 @@
         "method": "POST",
         "url": "/customer/12212/accounts",
 		"bodyPatterns":[{
-			"equalToJson": { "id": 87654, "type": "savings", "balance": "0" }
+			"equalToJson": { "id": 87654, "type": "savings", "balance": 0.0 }
 		}] 
     },
     "response": {

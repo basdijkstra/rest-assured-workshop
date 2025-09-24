@@ -11,17 +11,17 @@
                 {
                     "id": 12345,
                     "type": "checking",
-                    "balance": "1234.56"
+                    "balance": 1234.56
                 },
                 {
                     "id": 54321,
                     "type": "checking",
-                    "balance": "98.76"
+                    "balance": 98.76
                 },
                 {
                     "id": 98765,
                     "type": "savings",
-                    "balance": "10123.00"
+                    "balance": 10123.00
                 }
             ]
         }
