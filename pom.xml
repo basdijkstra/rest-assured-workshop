@@ -9,12 +9,12 @@
     <description>An open source workshop on using REST Assured to write checks for RESTful web services</description>
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
-        <restassured.version>5.5.0</restassured.version>
-        <junit.version>5.11.2</junit.version>
-        <jackson.databind.version>2.18.0</jackson.databind.version>
+        <restassured.version>5.5.6</restassured.version>
+        <junit.version>5.13.4</junit.version>
+        <jackson.databind.version>2.20.0</jackson.databind.version>
         <wiremock.version>3.13.1</wiremock.version>
         <slf4j.version>2.0.17</slf4j.version>
-        <maven.surefire.plugin.version>3.5.1</maven.surefire.plugin.version>
+        <maven.surefire.plugin.version>3.5.4</maven.surefire.plugin.version>
     </properties>
     <dependencies>
         <dependency>
