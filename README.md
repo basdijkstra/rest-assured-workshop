@@ -4,7 +4,7 @@ For those of you looking to gain some experience working with [REST Assured](htt
 
 What do I need?
 ---
-A Java 21 JDK, Maven and an IDE of your choice. That's it.
+A Java JDK (version 17 or newer), Maven and an IDE of your choice. That's it.
 
 What API is used for the exercises?
 ---
@@ -28,8 +28,8 @@ The .pptx/.pdf/.odp file in the root folder contains all slides from the worksho
 
 Comments? Saying thanks?
 ---
-Feel free to file an issue here or send me an email at bas@ontestautomation.com.
+Feel free to file an issue here, or email me at bas@ontestautomation.com.
 
 I'd rather have you deliver the workshop instead...
 ---
-Sure, I'd love to. Again, send me an email and I'll be happy to discuss options. In house or at your conference, I'm sure we can work something out.
+Sure, I'd love to. Again, email me and I'll be happy to discuss options. In house or at your conference, I'm sure we can work something out.
