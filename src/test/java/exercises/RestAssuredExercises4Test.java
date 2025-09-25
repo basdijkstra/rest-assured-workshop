@@ -31,7 +31,7 @@ public class RestAssuredExercises4Test {
      * Assert that the ID of the first account equals 12345
      * What do you notice about comparing integer element values?
      *
-     * Use "accounts.account[0].id" as the XmlPath
+     * Use "accounts.account[0].id" as the GPath
      * expression to extract the required value from the response
      ******************************************************/
 
@@ -52,7 +52,7 @@ public class RestAssuredExercises4Test {
      * Assert that the balance for the third account in the
      * list is equal to 43.21
      *
-     * Can you create the correct XmlPath expression yourself,
+     * Can you create the correct GPath expression yourself,
      * using the examples as shown in the slides?
      ******************************************************/
 
@@ -72,7 +72,7 @@ public class RestAssuredExercises4Test {
      *
      * Assert that the list contains 3 accounts of type 'checking'
      *
-     * Can you create the correct XmlPath expression yourself,
+     * Can you create the correct GPath expression yourself,
      * using the examples as shown in the slides?
      ******************************************************/
 
@@ -94,7 +94,7 @@ public class RestAssuredExercises4Test {
      * Assert that the list contains 2 accounts that have an
      * id starting with a '5'
      *
-     * Can you create the correct XmlPath expression yourself,
+     * Can you create the correct GPath expression yourself,
      * using the examples as shown in the slides?
      ******************************************************/
 
