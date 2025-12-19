@@ -9,10 +9,10 @@
     <description>An open source workshop on using REST Assured to write checks for RESTful web services</description>
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
-        <restassured.version>5.5.6</restassured.version>
-        <junit.version>5.13.4</junit.version>
-        <jackson.databind.version>2.20.0</jackson.databind.version>
-        <wiremock.version>3.13.1</wiremock.version>
+        <restassured.version>6.0.0</restassured.version>
+        <junit.version>6.0.1</junit.version>
+        <jackson.databind.version>2.20.1</jackson.databind.version>
+        <wiremock.version>4.0.0-beta.17</wiremock.version>
         <slf4j.version>2.0.17</slf4j.version>
         <maven.surefire.plugin.version>3.5.4</maven.surefire.plugin.version>
     </properties>
@@ -32,6 +32,18 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-commons</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
