@@ -11,7 +11,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <restassured.version>6.0.0</restassured.version>
         <junit.version>6.0.1</junit.version>
-        <jackson.databind.version>2.20.1</jackson.databind.version>
+        <jackson.databind.version>2.22.0</jackson.databind.version>
         <wiremock.version>4.0.0-beta.17</wiremock.version>
         <slf4j.version>2.0.17</slf4j.version>
         <maven.surefire.plugin.version>3.5.4</maven.surefire.plugin.version>
